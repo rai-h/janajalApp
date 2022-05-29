@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "492371422156",
+    "firebase_url": "https://janajalappsv1.firebaseio.com",
+    "project_id": "janajalappsv1",
+    "storage_bucket": "janajalappsv1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:492371422156:android:941c1669d7ccafca5c8b69",
+        "android_client_info": {
+          "package_name": "com.jana.janajal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "492371422156-uolblappp197nfeo00pksifdtnldmebc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.jana.janajal",
+            "certificate_hash": "27eb5cf217a103d49cb91b2e7ddc9d5a8ecda315"
+          }
+        },
+        {
+          "client_id": "492371422156-a9bsdjorl0iagh9mj709ejasag89defp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAF-PS1b6OXcmk90tfuSwJNb8BufToZERM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "492371422156-a9bsdjorl0iagh9mj709ejasag89defp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

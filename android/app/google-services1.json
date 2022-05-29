@@ -1,0 +1,64 @@
+{
+  "project_info": {
+    "project_number": "492371422156",
+    "firebase_url": "https://janajalappsv1.firebaseio.com",
+    "project_id": "janajalappsv1",
+    "storage_bucket": "janajalappsv1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:492371422156:android:941c1669d7ccafca5c8b69",
+        "android_client_info": {
+          "package_name": "com.jana.janajal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "492371422156-k4hc1s2hms1ce1tmckg0gbh853r2j0ub.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.jana.janajal",
+            "certificate_hash": "41a07f76d0f77d71f3b05d417a2a15e6a1a6131b"
+          }
+        },
+        {
+          "client_id": "492371422156-m762qibdssdu4o9flvctjtk0h7e4i0aq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.jana.janajal",
+            "certificate_hash": "e2d958fb2595f5bfd7c09aba9302adf8065d0a84"
+          }
+        },
+        {
+          "client_id": "492371422156-uofpc8gn1m5rm0tiujjtept73d8vo0ak.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.jana.janajal",
+            "certificate_hash": "b7b338e76f4d5170c1d5aba4958581a4248461fa"
+          }
+        },
+        {
+          "client_id": "492371422156-a9bsdjorl0iagh9mj709ejasag89defp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAF-PS1b6OXcmk90tfuSwJNb8BufToZERM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "492371422156-a9bsdjorl0iagh9mj709ejasag89defp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -566,7 +566,22 @@ class ApiBody {
         '</web:saveLocation>'
         '</soapenv:Body>';
 
-    print(body);
+    return topHeader + body + closeEnvelope;
+  }
+
+  static String deleteLocationBody({
+    required String userName,
+    required String password,
+    required String locId,
+  }) {
+    String body = '<soapenv:Body>'
+        '<web:deleteLocation>'
+        '<userName>$userName</userName>'
+        '<password>$password</password>'
+        '<locId>$locId</locId>'
+        '</web:deleteLocation>'
+        '</soapenv:Body>';
+
     return topHeader + body + closeEnvelope;
   }
 
@@ -591,6 +606,28 @@ class ApiBody {
         '<custId>$custId</custId>'
         '<token>$otp</token>'
         '</web:updateMobileVerification>'
+        '</soapenv:Body>';
+    print(body);
+    return topHeader + body + closeEnvelope;
+  }
+
+  static String saveRatings(
+    String userName,
+    String password,
+    String orderId,
+    String ratingLevel,
+    String remarks,
+    String personType,
+  ) {
+    String body = '<soapenv:Body>'
+        '<web:saveRatings>'
+        '<userName>$userName</userName>'
+        '<password>$password</password>'
+        '<orderId>$orderId</orderId>'
+        '<ratingLevel>$ratingLevel</ratingLevel>'
+        '<remarks>$remarks</remarks>'
+        '<personType>$personType</personType>'
+        '</web:saveRatings>'
         '</soapenv:Body>';
     print(body);
     return topHeader + body + closeEnvelope;

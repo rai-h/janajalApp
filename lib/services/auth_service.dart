@@ -7,6 +7,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:janajal/controller/auth.controller.dart';
 import 'package:janajal/models/user_model.dart';
 import 'package:janajal/services/api_calls.dart';
+import 'package:janajal/services/wallet_service.dart';
 import 'package:janajal/ui/dialogs/custom_dialogs.dart';
 import 'package:janajal/ui/helping_widget/custom_snackbar.dart';
 import 'package:janajal/ui/screens/login_screen/widget.dart';
@@ -109,6 +110,7 @@ class AuthServices {
           .changeUserNamePass(username, password);
 
       SharedPref.updateUserInSharedPrefs(userModel, username, password);
+      await WalletServices.getWalletDetails(context);
       if (navigat) {
         Navigator.of(context).pushAndRemoveUntil(
             MaterialPageRoute(builder: (BuildContext context) {

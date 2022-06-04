@@ -13,12 +13,12 @@ if (flutterRoot == null) {
 
 def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
 if (flutterVersionCode == null) {
-    flutterVersionCode = '1'
+    flutterVersionCode = '10'
 }
 
 def flutterVersionName = localProperties.getProperty('flutter.versionName')
 if (flutterVersionName == null) {
-    flutterVersionName = '1.0'
+    flutterVersionName = '2.0'
 }
 
 apply plugin: 'com.android.application'
@@ -42,20 +42,36 @@ android {
         main.java.srcDirs += 'src/main/kotlin'
     }
 
+
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId "com.jana.janajal"
-        minSdkVersion 26
+        minSdkVersion 21
         targetSdkVersion 31
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
+        ndk {
+            debugSymbolLevel 'SYMBOL_TABLE'
+        }
     }
+
+    signingConfigs {
+       release {
+           storeFile file('keystore')
+           storePassword 'Janajal@1212'
+           keyAlias 'key_janajal'
+           keyPassword 'Janajal@1212'
+       }
+   }
 
     buildTypes {
         release {
             // TODO: Add your own signing config for the release build.
             // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig signingConfigs.debug
+            signingConfig signingConfigs.release
+            ndk {
+                debugSymbolLevel 'SYMBOL_TABLE'
+            }
         }
     }
 }

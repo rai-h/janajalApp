@@ -25,11 +25,11 @@ class _MainWidgetState extends State<MainWidget> {
   @override
   void initState() {
     widget.showToast ? CustomDialogs.showToast(widget.toastString) : null;
-    widget.showToast
-        ? Future.delayed(Duration(seconds: 2), (() {
-            WalletServices.getWalletDetails(context);
-          }))
-        : WalletServices.getWalletDetails(context);
+    // widget.showToast
+    //     ? Future.delayed(Duration(seconds: 2), (() {
+    //         WalletServices.getWalletDetails(context);
+    //       }))
+    //     : WalletServices.getWalletDetails(context);
 
     // TODO: implement initState
     super.initState();

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:janajal/models/delivery_address_model.dart';
+import 'package:janajal/services/address_service.dart';
+import 'package:janajal/ui/screens/edit_location_screen/edit_location_screen.dart';
 import 'package:janajal/utils/janajal.dart';
 
 class AddressWidget extends StatefulWidget {
@@ -113,7 +115,13 @@ class _AddressWidgetState extends State<AddressWidget> {
                 elevation: 10,
                 padding:
                     const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => EditLocationScreen(
+                      addressModel: widget.deliveryAddressModel,
+                    ),
+                  ));
+                },
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(40)),
                 color: Janajal.secondaryColor,
@@ -129,7 +137,10 @@ class _AddressWidgetState extends State<AddressWidget> {
                 elevation: 10,
                 padding:
                     const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                onPressed: () {},
+                onPressed: () {
+                  AddressServices.deleteAddress(context,
+                      locId: widget.deliveryAddressModel.locId!);
+                },
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(40)),
                 color: Colors.green.shade800,

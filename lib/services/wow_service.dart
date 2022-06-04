@@ -278,4 +278,35 @@ class WOWServiece {
       print(e);
     }
   }
+
+  static Future<LatLng?> saveOrderRating(
+    BuildContext context,
+    String orderId,
+    String ratingLevel,
+    String remarks,
+    String personType,
+  ) async {
+    try {
+      String? username =
+          Provider.of<AuthController>(context, listen: false).getUserName;
+      String? password =
+          Provider.of<AuthController>(context, listen: false).getPassword;
+
+      Map<String, dynamic> data = await ApiCalls.postCall(
+          methodName: Apis.getStationList,
+          body: ApiBody.saveRatings('118@$username', password!, orderId,
+              ratingLevel, remarks, personType),
+          context: context);
+      print(data);
+      String result = data['S:Envelope']['S:Body']['ns2:saveRatingsResponse']
+              ['return']
+          .toString();
+      if (result == '1') {
+        Navigator.of(context).pop();
+        CustomDialogs.showToast("Saved");
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
 }

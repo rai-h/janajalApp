@@ -44,7 +44,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   height: size.width * 0.1,
                 ),
                 Image.asset(
-                  'assets/images/janajal_logo_new.png',
+                  'assets/images/jjwowlogo.png',
                   width: 200,
                 ),
                 SizedBox(
@@ -71,13 +71,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Container(),
-                    const Text(
-                      'Forgot Password?',
-                      style: TextStyle(
-                          fontSize: 15,
-                          color: Colors.grey,
-                          fontWeight: FontWeight.w600),
-                    ),
                   ],
                 ),
                 SizedBox(

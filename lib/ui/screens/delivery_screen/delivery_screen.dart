@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:janajal/controller/order.controller.dart';
 import 'package:janajal/controller/ui.controller.dart';
 import 'package:janajal/services/address_service.dart';
+import 'package:janajal/ui/dialogs/custom_dialogs.dart';
 import 'package:janajal/ui/screens/delivery_screen/widgets.dart';
 import 'package:janajal/ui/screens/maps_screen/maps_screen.dart';
 import 'package:janajal/ui/screens/order_details/order_details.dart';
@@ -57,22 +58,34 @@ class _DeliveryScreenState extends State<DeliveryScreen> {
                     itemCount: notifier.getOrderList.length,
                     shrinkWrap: true,
                     itemBuilder: (context, index) {
+                      print(notifier
+                          .getOrderList[index]['ratingLevel'].runtimeType);
                       return notifier.getOrderList[index]['OrderNo'] !=
                               'No Order'
                           ? GestureDetector(
                               onTap: () {
-                                Navigator.of(context).push(
-                                  MaterialPageRoute(
-                                    builder: ((context) => OrderDetails(
-                                          tripCode: notifier.getOrderList[index]
-                                              ['TripCode'],
-                                          status: notifier.getOrderList[index]
-                                              ['Status'],
-                                          txnId: notifier.getOrderList[index]
-                                              ['txnId'],
-                                        )),
-                                  ),
-                                );
+                                uiNotifier.selectedDeliveryTab == 1
+                                    ? CustomDialogs.showRatingDialog(
+                                        context,
+                                        notifier.getOrderList[index]['orderId'],
+                                        notifier.getOrderList[index]
+                                            ['ratingLevel'],
+                                        notifier.getOrderList[index]['remarks'])
+                                    : Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                          builder: ((context) => OrderDetails(
+                                                tripCode:
+                                                    notifier.getOrderList[index]
+                                                        ['TripCode'],
+                                                status:
+                                                    notifier.getOrderList[index]
+                                                        ['Status'],
+                                                txnId:
+                                                    notifier.getOrderList[index]
+                                                        ['txnId'],
+                                              )),
+                                        ),
+                                      );
                               },
                               child: Padding(
                                 padding: EdgeInsets.symmetric(vertical: 10),

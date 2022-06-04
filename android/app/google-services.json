@@ -15,6 +15,22 @@
       },
       "oauth_client": [
         {
+          "client_id": "492371422156-35ldi91a4ctf8ocuto2thjk5esbl5urj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.jana.janajal",
+            "certificate_hash": "b7b338e76f4d5170c1d5aba4958581a4248461fa"
+          }
+        },
+        {
+          "client_id": "492371422156-bs0nmt4q0l8mopq0qmc3nmm4nvggj7je.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.jana.janajal",
+            "certificate_hash": "4a5025d7482f6ae4adbb6d9efb65cce5329df963"
+          }
+        },
+        {
           "client_id": "492371422156-uolblappp197nfeo00pksifdtnldmebc.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

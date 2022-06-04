@@ -112,11 +112,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 height: size.width * 0.1,
               ),
               Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  // Container(
-                  //   width: 50,
-                  // ),
+                  Container(
+                    width: 50,
+                  ),
                   const Text(
                     'Profile',
                     style: TextStyle(
@@ -124,6 +124,21 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         color: Colors.grey,
                         fontWeight: FontWeight.w700),
                   ),
+                  GestureDetector(
+                    onTap: () async {
+                      await SharedPref.removeUserFromSharedPrefs();
+                      await GoogleSignIn().signOut();
+                      Navigator.of(context).pushAndRemoveUntil(
+                          MaterialPageRoute(builder: (BuildContext context) {
+                        return LoginScreen();
+                      }), (route) => false);
+                    },
+                    child: Icon(
+                      Icons.logout,
+                      size: 30,
+                      color: Colors.grey,
+                    ),
+                  )
                   // MaterialButton(
                   //   elevation: 2,
                   //   minWidth: 0,
@@ -320,18 +335,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
               // ),
               // SizedBox(
               //   height: 10,
-              // ),
-              RoundButton(
-                  onPress: () async {
-                    await SharedPref.removeUserFromSharedPrefs();
-                    await GoogleSignIn().signOut();
-                    Navigator.of(context).pushAndRemoveUntil(
-                        MaterialPageRoute(builder: (BuildContext context) {
-                      return LoginScreen();
-                    }), (route) => false);
-                  },
-                  color: Colors.red.shade600,
-                  text: "Logout")
+              // // ),
+              // RoundButton(
+              //     onPress: () async {
+              //       await SharedPref.removeUserFromSharedPrefs();
+              //       await GoogleSignIn().signOut();
+              //       Navigator.of(context).pushAndRemoveUntil(
+              //           MaterialPageRoute(builder: (BuildContext context) {
+              //         return LoginScreen();
+              //       }), (route) => false);
+              //     },
+              //     color: Colors.red.shade600,
+              //     text: "Logout")
             ],
           ),
         ),

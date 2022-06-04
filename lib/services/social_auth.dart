@@ -17,11 +17,9 @@ class SocialAuth {
         if (!(await AuthServices.checkEmailExist(googleUser.email, context))) {
           CustomDialogs.showToast('No user found');
         } else {
-          print("object>????????????????");
-          // password = await AuthServices.getPassword(googleUser.email, context);
-          // print('object');
-          // await AuthServices.authenticateUser(
-          //     context, googleUser.email, password);
+          password = await AuthServices.getPassword(googleUser.email, context);
+          await AuthServices.authenticateUser(
+              context, googleUser.email, password);
         }
       }
     } catch (e) {

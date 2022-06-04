@@ -22,8 +22,10 @@ class AddressMapScreen extends StatefulWidget {
   final String landMark;
   final String deliveryPoint;
   final String stateId;
+  final String locId;
   const AddressMapScreen(
       {Key? key,
+      this.locId = "0",
       required this.address,
       required this.city,
       required this.state,
@@ -191,7 +193,7 @@ class _AddressMapScreenState extends State<AddressMapScreen> {
                                   landMark: widget.landMark,
                                   pincode: widget.pincode,
                                   stateId: widget.stateId,
-                                  locId: '0',
+                                  locId: widget.locId,
                                   googleName:
                                       addressFromLatLngModel.formattedAddress ??
                                           "",

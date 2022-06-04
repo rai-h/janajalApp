@@ -154,4 +154,43 @@ class AddressServices {
       CustomDialogs.showToast('Something went wrong');
     }
   }
+
+  static Future<void> deleteAddress(
+    BuildContext context, {
+    required String locId,
+  }) async {
+    List<DeliveryAddressModel> addressList = [];
+    try {
+      String? username =
+          Provider.of<AuthController>(context, listen: false).getUserName;
+      String? password =
+          Provider.of<AuthController>(context, listen: false).getPassword;
+
+      Map<String, dynamic> data = await ApiCalls.postCall(
+          methodName: Apis.getStationList,
+          body: ApiBody.deleteLocationBody(
+            userName: '118@$username',
+            password: password!,
+            locId: locId,
+          ),
+          context: context);
+
+      if (data['S:Envelope']['S:Body']['ns2:deleteLocationResponse']['return']
+              .toString() ==
+          '1') {
+        Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(
+                builder: ((context) => MainWidget(
+                      showToast: true,
+                      toastString: 'Address deleted',
+                    ))),
+            (route) => false);
+      } else {
+        CustomDialogs.showToast('Something went wrong');
+      }
+    } catch (e) {
+      print('$e erron in service');
+      CustomDialogs.showToast('Something went wrong');
+    }
+  }
 }

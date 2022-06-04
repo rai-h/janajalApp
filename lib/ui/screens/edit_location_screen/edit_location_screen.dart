@@ -1,5 +1,6 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
+import 'package:janajal/models/delivery_address_model.dart';
 import 'package:janajal/services/address_service.dart';
 import 'package:janajal/services/auth_service.dart';
 import 'package:janajal/ui/helping_widget/custom_dropdown.dart';
@@ -10,7 +11,8 @@ import 'package:janajal/ui/screens/login_screen/widget.dart';
 import 'package:janajal/utils/validator.dart';
 
 class EditLocationScreen extends StatefulWidget {
-  const EditLocationScreen({Key? key}) : super(key: key);
+  final DeliveryAddressModel? addressModel;
+  const EditLocationScreen({Key? key, this.addressModel}) : super(key: key);
 
   @override
   State<EditLocationScreen> createState() => _EditLocationScreenState();
@@ -22,6 +24,7 @@ class _EditLocationScreenState extends State<EditLocationScreen> {
   TextEditingController _pincodeController = TextEditingController();
   TextEditingController _landMarkController = TextEditingController();
   TextEditingController _deliveryPointController = TextEditingController();
+  String locId = "0";
   String? state;
   String? stateId;
   Map<String, dynamic>? selectedState;
@@ -92,6 +95,15 @@ class _EditLocationScreenState extends State<EditLocationScreen> {
 
   callApi() async {
     stateList = await AddressServices.getStatePointDetails(context);
+
+    if (widget.addressModel != null) {
+      _addressContrller.text = widget.addressModel!.area!;
+      _cityController.text = widget.addressModel!.city!;
+      _pincodeController.text = widget.addressModel!.pincode!;
+      _landMarkController.text = widget.addressModel!.landMark!;
+      _deliveryPointController.text = widget.addressModel!.deliveryPoint!;
+      locId = widget.addressModel!.locId!;
+    }
     setState(() {});
     // TODO: implement initState
   }
@@ -270,6 +282,7 @@ class _EditLocationScreenState extends State<EditLocationScreen> {
                         Navigator.of(context).push(
                           MaterialPageRoute(
                             builder: ((context) => AddressMapScreen(
+                                  locId: locId,
                                   address: _addressContrller.text,
                                   city: _cityController.text,
                                   state: state!,

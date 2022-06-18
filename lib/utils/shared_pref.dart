@@ -21,6 +21,16 @@ class SharedPref {
     prefs.setString(Janajal.username, username);
   }
 
+  static Future<String> getOfferShownTime() async {
+    final SharedPreferences prefs = await getPrefInstance();
+    return prefs.getString('offerShownTime') ?? '';
+  }
+
+  static Future<Null> saveOfferShownTime(String timestamp) async {
+    final SharedPreferences prefs = await getPrefInstance();
+    prefs.setString('offerShownTime', timestamp);
+  }
+
   static Future<bool> getUserInSharedPrefs(BuildContext context) async {
     final SharedPreferences prefs = await getPrefInstance();
 

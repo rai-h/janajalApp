@@ -95,29 +95,32 @@ class _PlaceOrderScreenState extends State<PlaceOrderScreen> {
     DateTime slot1Pm = DateTime(now.year, now.month, now.day, 12, 35).toLocal();
     DateTime slot3Pm = DateTime(now.year, now.month, now.day, 14, 35).toLocal();
     DateTime slot5Pm = DateTime(now.year, now.month, now.day, 16, 35).toLocal();
+    if (selectedDateTime != null) {
+      if (selectedDateTime!
+          .isAtSameMomentAs(DateTime(now.year, now.month, now.day).toLocal())) {
+        if (now.isAfter(slot5Pm) &&
+            window[selectedDeliveryWindow] == window[windowKeys[4]]) {
+          return "You can't place order for this slot now. Please choose a different time date.";
+        }
+        if (now.isAfter(slot9Am) &&
+            window[selectedDeliveryWindow] == window[windowKeys[0]]) {
+          return "You can't place order for this slot now. Please choose a different time date.";
+        }
 
-    if (selectedDateTime!
-        .isAtSameMomentAs(DateTime(now.year, now.month, now.day).toLocal())) {
-      if (now.isAfter(slot5Pm) &&
-          window[selectedDeliveryWindow] == window[windowKeys[4]]) {
-        return "You can't place order for this slot now. Please choose a different time date.";
-      }
-      if (now.isAfter(slot9Am) &&
-          window[selectedDeliveryWindow] == window[windowKeys[0]]) {
-        return "You can't place order for this slot now. Please choose a different time date.";
-      }
-
-      if (now.isAfter(slot11Am) &&
-          window[selectedDeliveryWindow] == window[windowKeys[1]]) {
-        return "You can't place order for this slot now. Please choose a different time date.";
-      }
-      if (now.isAfter(slot1Pm) &&
-          window[selectedDeliveryWindow] == window[windowKeys[2]]) {
-        return "You can't place order for this slot now. Please choose a different time date.";
-      }
-      if (now.isAfter(slot3Pm) &&
-          window[selectedDeliveryWindow] == window[windowKeys[3]]) {
-        return "You can't place order for this slot now. Please choose a different time date.";
+        if (now.isAfter(slot11Am) &&
+            window[selectedDeliveryWindow] == window[windowKeys[1]]) {
+          return "You can't place order for this slot now. Please choose a different time date.";
+        }
+        if (now.isAfter(slot1Pm) &&
+            window[selectedDeliveryWindow] == window[windowKeys[2]]) {
+          return "You can't place order for this slot now. Please choose a different time date.";
+        }
+        if (now.isAfter(slot3Pm) &&
+            window[selectedDeliveryWindow] == window[windowKeys[3]]) {
+          return "You can't place order for this slot now. Please choose a different time date.";
+        }
+      } else {
+        return '';
       }
     } else {
       return 'Please select a delivery window';

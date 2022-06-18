@@ -15,9 +15,12 @@ class SocialAuth {
           await getGoogleUserDetails(context);
       if (googleUser != null) {
         if (!(await AuthServices.checkEmailExist(googleUser.email, context))) {
-          CustomDialogs.showToast('No user found');
+          CustomDialogs.showToast('No user found. \nPlease Sign Up first.');
+          await GoogleSignIn().signOut();
         } else {
           password = await AuthServices.getPassword(googleUser.email, context);
+          print(password);
+          print(">>>>>>>>>>>>>>>>>>>>>>");
           await AuthServices.authenticateUser(
               context, googleUser.email, password);
         }

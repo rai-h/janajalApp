@@ -13,6 +13,7 @@ class ApiCalls {
     required String methodName,
     required String body,
     required BuildContext context,
+    bool showLoading = true,
   }) async {
     Map<String, String> headerData = new Map();
     Map<String, dynamic> responseData = {};
@@ -20,7 +21,9 @@ class ApiCalls {
     headerData.putIfAbsent("Content-Type", () => "text/xml; charset=utf-8");
     headerData.putIfAbsent("SOAPAction", () => methodName);
     headerData.putIfAbsent("Host", () => "www.janajal.com");
-    CustomDialogs.showLoading();
+    if (showLoading) {
+      CustomDialogs.showLoading();
+    }
     try {
       http.Response response =
           await http.post(Uri.parse(url), body: body, headers: headerData);
@@ -38,7 +41,9 @@ class ApiCalls {
       CustomDialogs.showToast('Oops!\nSomething Went Wrong');
       print("apiPostCall : $methodName has Error\n $e \n");
     }
-    CustomDialogs.dismissLoading();
+    if (showLoading) {
+      CustomDialogs.dismissLoading();
+    }
     return responseData;
   }
 }

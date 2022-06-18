@@ -1,7 +1,9 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:janajal/controller/auth.controller.dart';
+import 'package:janajal/controller/ui.controller.dart';
 import 'package:janajal/models/user_model.dart';
 import 'package:janajal/services/auth_service.dart';
 import 'package:janajal/ui/helping_widget/custom_textfield.dart';
@@ -40,6 +42,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   String passwordError = '';
   String addressError = '';
   String pincodeError = '';
+  String selectedLanguage = 'English';
 
   validateForm() async {
     emailError = Validator.validateEmail(emailController.text.trim());
@@ -93,6 +96,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   callApi() async {
     isMobileVerified = await AuthServices.isMobileVerified(context, "");
     print(isMobileVerified);
+    print("object");
     setState(() {});
   }
 
@@ -304,9 +308,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               SizedBox(
                 height: size.width * 0.1,
               ),
-              SizedBox(
-                height: size.width * 0.1,
-              ),
+
               // CustomTextField(
               //   text: 'Address',
               //   controller: addressController,

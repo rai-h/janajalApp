@@ -20,7 +20,7 @@ class RazorPayServices {
       String orderId) {
     return {
       'order_id': orderId,
-      'key': RazorPayKey.LIVE_KEY,
+      'key': RazorPayKey.TEST_Key,
       'amount': amount * 100,
       'name': name,
       'prefill': {'contact': phone, 'email': email}
@@ -28,9 +28,9 @@ class RazorPayServices {
   }
 
   static Future<String> generateOrder(double amount, String txnId) async {
-    String username = RazorPayKey.LIVE_KEY;
+    String username = RazorPayKey.TEST_Key;
     print(amount);
-    String password = RazorPayKey.LIVE_SECERET_KEY;
+    String password = RazorPayKey.TEST_SECERET_KEY;
     String basicAuth =
         'Basic ' + base64Encode(utf8.encode('$username:$password'));
     print(basicAuth);

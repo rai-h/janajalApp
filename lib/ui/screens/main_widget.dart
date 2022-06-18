@@ -6,8 +6,10 @@ import 'package:janajal/services/watm_service.dart';
 import 'package:janajal/ui/dialogs/custom_dialogs.dart';
 import 'package:janajal/ui/helping_widget/custom_navbar.dart';
 import 'package:janajal/ui/screens/qr_screen/qr_screen.dart';
+import 'package:janajal/ui/screens/upgrade_screen/upgrade_screen.dart';
 import 'package:janajal/utils/validator.dart';
 import 'package:provider/provider.dart';
+import 'package:upgrader/upgrader.dart';
 
 class MainWidget extends StatefulWidget {
   final bool showToast;
@@ -25,12 +27,7 @@ class _MainWidgetState extends State<MainWidget> {
   @override
   void initState() {
     widget.showToast ? CustomDialogs.showToast(widget.toastString) : null;
-    // widget.showToast
-    //     ? Future.delayed(Duration(seconds: 2), (() {
-    //         WalletServices.getWalletDetails(context);
-    //       }))
-    //     : WalletServices.getWalletDetails(context);
-
+    WalletServices.getOfferList(context);
     // TODO: implement initState
     super.initState();
   }
@@ -38,30 +35,45 @@ class _MainWidgetState extends State<MainWidget> {
   @override
   Widget build(BuildContext context) {
     return Consumer<UiController>(builder: (context, notifier, _) {
-      return Scaffold(
-          // floatingActionButton: notifier.navbarIndex == 0
-          //     ? FloatingActionButton(
-          //         child: const Icon(
-          //           Icons.qr_code_scanner_rounded,
-          //           size: 35,
-          //           color: Colors.white,
-          //         ),
-          //         backgroundColor: Colors.blue.shade900,
-          //         onPressed: () async {},
-          //       )
-          //     : null,
-          extendBody: true,
-          resizeToAvoidBottomInset: true,
-          body: Container(
-            decoration: const BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage(
-                      'assets/images/backgroundOne.png',
-                    ),
-                    fit: BoxFit.fill)),
-            child: notifier.mainWidget,
-          ),
-          bottomNavigationBar: const CustomNavbar());
+      return UpgradeAlert(
+        upgrader: Upgrader(
+            canDismissDialog: false,
+            durationUntilAlertAgain: Duration(seconds: 1),
+            onUpdate: () {
+              return false;
+            },
+            countryCode: 'IN',
+            debugLogging: false,
+            showReleaseNotes: false,
+            dialogStyle: UpgradeDialogStyle.material,
+            showIgnore: false,
+            showLater: false,
+            willDisplayUpgrade: (
+                {String? appStoreVersion,
+                required bool display,
+                String? installedVersion,
+                String? minAppVersion}) async {
+              if (display) {
+                await Future.delayed(Duration(milliseconds: 50));
+                Navigator.of(context).pushAndRemoveUntil(
+                    MaterialPageRoute(builder: (context) => UpgradeScreen()),
+                    (route) => false);
+              }
+            }),
+        child: Scaffold(
+            extendBody: true,
+            resizeToAvoidBottomInset: true,
+            body: Container(
+              decoration: const BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage(
+                        'assets/images/backgroundOne.png',
+                      ),
+                      fit: BoxFit.fill)),
+              child: notifier.mainWidget,
+            ),
+            bottomNavigationBar: const CustomNavbar()),
+      );
     });
   }
 }

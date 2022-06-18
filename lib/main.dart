@@ -3,6 +3,8 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:janajal/base_app/base_app.dart';
 import 'package:janajal/controller/auth.controller.dart';
 import 'package:janajal/controller/order.controller.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 
@@ -10,7 +12,7 @@ import 'controller/ui.controller.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
+  await EasyLocalization.ensureInitialized();
   await Firebase.initializeApp();
 
   runApp(
@@ -26,7 +28,12 @@ void main() async {
           create: (_) => OrderController(),
         ),
       ],
-      child: const MyApp(),
+      child: EasyLocalization(
+          supportedLocales: [Locale('en', 'US'), Locale('hi', 'IN')],
+          path:
+              'assets/translations', // <-- change the path of the translation files
+          fallbackLocale: Locale('en', 'US'),
+          child: const MyApp()),
     ),
   );
 }
@@ -55,6 +62,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      localizationsDelegates: context.localizationDelegates,
+      supportedLocales: context.supportedLocales,
+      locale: context.locale,
       title: 'Janajal',
       theme: ThemeData(
         primarySwatch: Colors.lightBlue,

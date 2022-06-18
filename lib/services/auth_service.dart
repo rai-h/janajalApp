@@ -42,7 +42,7 @@ class AuthServices {
         CustomDialogs.showToast('Invalid Credentials');
       }
     } else {
-      CustomDialogs.showToast('Oops!\nSomething Went Wrong');
+      CustomDialogs.showToast('Oops!\nSomething Went Wrong:::');
     }
   }
 
@@ -64,7 +64,7 @@ class AuthServices {
           methodName: Apis.customerSignUp,
           body: ApiBody.getSignupBody(
             firstName,
-            mobile,
+            '',
             email,
             username,
             password,
@@ -104,6 +104,7 @@ class AuthServices {
           data['S:Envelope']['S:Body']['ns2:getUserDetailsResponse']['return'];
 
       UserModel userModel = UserModel.fromJson(jsonDecode(dataString));
+
       Provider.of<AuthController>(context, listen: false)
           .changeUserModel(userModel);
       Provider.of<AuthController>(context, listen: false)
@@ -111,6 +112,7 @@ class AuthServices {
 
       SharedPref.updateUserInSharedPrefs(userModel, username, password);
       await WalletServices.getWalletDetails(context);
+
       if (navigat) {
         Navigator.of(context).pushAndRemoveUntil(
             MaterialPageRoute(builder: (BuildContext context) {
@@ -198,14 +200,15 @@ class AuthServices {
           methodName: Apis.authenticateUser,
           body: ApiBody.verifyOTPBody('118@$username', password!, otp),
           context: context);
-      print(data['S:Envelope']['S:Body']['ns2:mobileVerifiedResponse']);
-      if (data['S:Envelope']['S:Body']['ns2:mobileVerifiedResponse']
-              ['return'] ==
-          null) {
+      print(data['S:Envelope']['S:Body']['ns2:mobileVerifiedResponse']['return']
+          .runtimeType);
+      if (data['S:Envelope']['S:Body']['ns2:mobileVerifiedResponse']['return']
+              .toString() ==
+          '1') {
         // CustomDialogs.showToast('No user found with this email/phone');
-        return false;
-      } else {
         return true;
+      } else {
+        return false;
       }
     } catch (e) {
       print(e);

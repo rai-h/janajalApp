@@ -1,5 +1,9 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:janajal/controller/auth.controller.dart';
+import 'package:janajal/models/wallet_details_model.dart';
+import 'package:janajal/services/wallet_service.dart';
 import 'package:janajal/ui/dialogs/custom_dialogs.dart';
 import 'package:janajal/ui/helping_widget/round_button.dart';
 import 'package:janajal/ui/screens/about_us_screen/about_us.dart';
@@ -12,6 +16,9 @@ import 'package:janajal/ui/screens/qr_screen/qr_screen.dart';
 import 'package:janajal/ui/screens/wallet_add_money_screen/wallet_add_money_screen.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:janajal/ui/screens/watm_locator_screen/watm_locator_screen.dart';
+import 'package:provider/provider.dart';
+import 'package:share_plus/share_plus.dart';
+import 'package:in_app_review/in_app_review.dart';
 import 'package:janajal/utils/janajal.dart';
 import 'package:janajal/utils/validator.dart';
 
@@ -24,6 +31,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   String deviceId = '';
+  WalletDetailModel? _walletDetailModel;
   String extractDeviceId(String qrData) {
     int indexOfJJ = qrData.lastIndexOf('Janajal_');
     int indexOfSym = qrData.lastIndexOf('&');
@@ -43,6 +51,19 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   @override
+  void initState() {
+    callApi();
+    // TODO: implement initState
+    super.initState();
+  }
+
+  callApi() async {
+    await WalletServices.getWalletDetails(context);
+    _walletDetailModel =
+        Provider.of<AuthController>(context, listen: false).getWalletDetails;
+  }
+
+  @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
@@ -51,40 +72,118 @@ class _HomeScreenState extends State<HomeScreen> {
         automaticallyImplyLeading: false,
         backgroundColor: Colors.white,
         title: Row(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            const Icon(
-              Icons.location_on_rounded,
-              size: 30,
-              color: Colors.lightBlue,
-            ),
-            const SizedBox(
-              width: 10,
-            ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: const [
+            GestureDetector(
+              onTap: () {
+                CustomDialogs.showChangeLanguage(context);
+              },
+              child: Container(
+                padding: EdgeInsets.all(5),
+                decoration: BoxDecoration(
+                    color: Colors.green,
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(width: 1)),
+                child: Row(
+                  children: [
                     Text(
-                      'Janajal',
-                      style: TextStyle(fontSize: 18, color: Colors.lightBlue),
+                      'A',
+                      style: TextStyle(
+                          fontSize: 16,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold),
                     ),
-                    Icon(
-                      Icons.keyboard_arrow_down_rounded,
-                      color: Colors.lightBlue,
-                      size: 30,
-                    )
+                    const SizedBox(
+                      width: 2,
+                    ),
+                    Text(
+                      '/अ',
+                      style: TextStyle(
+                          fontSize: 18,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold),
+                    ),
                   ],
                 ),
-                Text(
-                  'Noida',
-                  style: TextStyle(fontSize: 14, color: Colors.grey.shade400),
+              ),
+            ),
+            GestureDetector(
+              onTap: () async {
+                final InAppReview inAppReview = InAppReview.instance;
+
+                if (await inAppReview.isAvailable()) {
+                  // inAppReview.requestReview();
+                  inAppReview.openStoreListing();
+                }
+              },
+              child: Container(
+                padding: EdgeInsets.all(5),
+                decoration: BoxDecoration(
+                    color: Colors.blue.shade600,
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(width: 1)),
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.star,
+                      size: 20,
+                      color: Colors.yellow.shade700,
+                    ),
+                    const SizedBox(
+                      width: 5,
+                    ),
+                    Text(
+                      'Rate Us',
+                      style: TextStyle(
+                          fontSize: 18,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                  ],
                 ),
-              ],
+              ),
             ),
-            const SizedBox(
-              width: 10,
-            ),
+            GestureDetector(
+              onTap: () {
+                Share.share(
+                    'https://play.google.com/store/apps/details?id=com.jana.janajal',
+                    subject: 'Janajal');
+                // Share.shareFiles(['assets/images/janajal_khush.png']);
+              },
+              child: Container(
+                padding: EdgeInsets.all(5),
+                decoration: BoxDecoration(
+                    color: Colors.purple.shade600,
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(width: 1)),
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.share,
+                      size: 20,
+                      color: Colors.lightGreen,
+                    ),
+                    const SizedBox(
+                      width: 5,
+                    ),
+                    Text(
+                      'Share App',
+                      style: TextStyle(
+                          fontSize: 18,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                  ],
+                ),
+              ),
+            )
           ],
         ),
       ),
@@ -114,7 +213,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         color: Colors.white,
                       ),
                       Text(
-                        'Locate \nWATM',
+                        'home_screen.locate_watm'.tr(),
                         style: TextStyle(
                             color: Colors.white, fontWeight: FontWeight.bold),
                       ),
@@ -148,7 +247,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         color: Colors.white,
                       ),
                       Text(
-                        'Scan',
+                        'home_screen.scan'.tr(),
                         style: TextStyle(
                             color: Colors.white, fontWeight: FontWeight.bold),
                       ),
@@ -172,7 +271,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         color: Colors.white,
                       ),
                       Text(
-                        'FAQs',
+                        'home_screen.faqs'.tr(),
                         style: TextStyle(
                             color: Colors.white, fontWeight: FontWeight.bold),
                       ),
@@ -192,8 +291,10 @@ class _HomeScreenState extends State<HomeScreen> {
                         Navigator.of(context).push(MaterialPageRoute(
                             builder: (context) => PrepaidCardScreen()));
                       },
-                      child: homeScreenCard(size,
-                          'assets/images/prepaid_card.png', 'Prepaid Card',
+                      child: homeScreenCard(
+                          size,
+                          'assets/images/prepaid_card.png',
+                          'home_screen.prepaid_card'.tr(),
                           color: Colors.blue.shade100),
                     ),
                   ),
@@ -206,8 +307,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         Navigator.of(context).push(MaterialPageRoute(
                             builder: (context) => PlaceOrderScreen()));
                       },
-                      child: homeScreenCard(
-                          size, 'assets/images/icons/wow.png', 'Place Order',
+                      child: homeScreenCard(size, 'assets/images/icons/wow.png',
+                          'home_screen.place_order'.tr(),
                           color: Colors.green.shade100),
                     ),
                   ),
@@ -228,7 +329,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: homeScreenCard(
                           size,
                           'assets/images/icons/delivery_icon.png',
-                          'My Delivery \nLocations',
+                          'home_screen.my_delivery_locations'.tr(),
                           color: Colors.orange.shade100),
                     ),
                   ),
@@ -238,11 +339,18 @@ class _HomeScreenState extends State<HomeScreen> {
                   Expanded(
                     child: GestureDetector(
                       onTap: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => WalletAddMoneyScreen()));
+                        print(_walletDetailModel);
+                        if (_walletDetailModel != null) {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => WalletAddMoneyScreen()));
+                        } else {
+                          CustomDialogs.showWalletAlertDialog(context);
+                        }
                       },
-                      child: homeScreenCard(size,
-                          'assets/images/icons/wallet.png', 'Top-Up\nMy Wallet',
+                      child: homeScreenCard(
+                          size,
+                          'assets/images/icons/wallet.png',
+                          'home_screen.top_up_wallet'.tr(),
                           color: Colors.purple.shade100),
                     ),
                   ),

@@ -279,7 +279,7 @@ class WOWServiece {
     }
   }
 
-  static Future<LatLng?> saveOrderRating(
+  static Future<void> saveOrderRating(
     BuildContext context,
     String orderId,
     String ratingLevel,

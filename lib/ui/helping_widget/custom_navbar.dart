@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:janajal/controller/ui.controller.dart';
 import 'package:provider/provider.dart';
@@ -51,7 +52,7 @@ class _CustomNavbarState extends State<CustomNavbar> {
                 'assets/images/icons/janajal_logo.png',
                 width: 27,
               ),
-              label: 'Home'),
+              label: 'navbar.home'.tr()),
           BottomNavigationBarItem(
             activeIcon: Container(
               padding: EdgeInsets.all(10),
@@ -60,7 +61,7 @@ class _CustomNavbarState extends State<CustomNavbar> {
               child: Icon(Icons.local_shipping_rounded),
             ),
             icon: Icon(Icons.local_shipping_rounded),
-            label: 'My Orders',
+            label: 'navbar.my_orders'.tr(),
           ),
           BottomNavigationBarItem(
             activeIcon: Container(
@@ -70,7 +71,7 @@ class _CustomNavbarState extends State<CustomNavbar> {
               child: Icon(Icons.account_balance_wallet),
             ),
             icon: Icon(Icons.account_balance_wallet),
-            label: 'My Wallet',
+            label: 'navbar.my_wallet'.tr(),
           ),
           BottomNavigationBarItem(
             activeIcon: Container(
@@ -80,7 +81,7 @@ class _CustomNavbarState extends State<CustomNavbar> {
               child: Icon(Icons.person_pin_rounded),
             ),
             icon: Icon(Icons.person_pin_rounded),
-            label: 'Profile',
+            label: 'navbar.profile'.tr(),
           ),
           BottomNavigationBarItem(
             activeIcon: Container(
@@ -90,7 +91,7 @@ class _CustomNavbarState extends State<CustomNavbar> {
               child: Icon(Icons.people),
             ),
             icon: Icon(Icons.people),
-            label: 'About us',
+            label: 'navbar.about_us'.tr(),
           ),
         ],
       );

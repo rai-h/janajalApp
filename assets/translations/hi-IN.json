@@ -1,0 +1,23 @@
+{
+  "navbar": {
+    "home": "होम",
+    "my_orders": "मेरे ऑर्डर",
+    "my_wallet": "मेरा वॉलट",
+    "profile": "प्रोफ़ाइल",
+    "about_us": "हमारे बारे में"
+  },
+  "home_screen": {
+    "locate_watm": "वाटम खोजें",
+    "scan": "स्कैन करें",
+    "faqs": "प्रश्नोत्तर",
+    "prepaid_card": "प्रीपेड कार्ड",
+    "place_order": "ऑर्डर करे",
+    "my_delivery_locations": "मेरे प्रसव\nका स्थान",
+    "top_up_wallet": "वॉलेट \nरिचार्ज करें",
+    "rate_us": "रेट करें",
+    "share_app": "ऐप साझा करें"
+  },
+  "profile_screen": {
+    "change_language": "भाषा बदलो"
+  }
+}

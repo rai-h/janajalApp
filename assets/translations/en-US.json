@@ -1,0 +1,23 @@
+{
+  "navbar": {
+    "home": "Home",
+    "my_orders": "My Orders",
+    "my_wallet": "My Wallet",
+    "profile": "Profile",
+    "about_us": "About Us"
+  },
+  "home_screen": {
+    "locate_watm": "Locate \nWATM",
+    "scan": "Scan",
+    "faqs": "FAQs",
+    "prepaid_card": "Prepaid Card",
+    "place_order": "Place Order",
+    "my_delivery_locations": "My Delivery\nLocations",
+    "top_up_wallet": "Top-Up \nMy Wallet",
+    "rate_us": "Rate Us",
+    "share_app": "Share App"
+  },
+  "profile_screen": {
+    "change_language": "Change Language"
+  }
+}

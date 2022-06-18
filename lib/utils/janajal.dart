@@ -41,6 +41,18 @@ class Janajal {
       'for its contribution to SDG6 of the UN.\nFor further details visit ';
 
   static const String certifications = 'Certifications';
+
+  static const String tncDesc =
+      '- JanaJal app owner can maintain ownership of all aspects of the app.'
+      '\n - JanaJal  app owner can restrict certain abusive behaviors by those accessing the software'
+      '\n - JanaJal  app owner can limit his liability to the user'
+      '\n - JanaJal  app owner and retain the right to terminate a user’s account if need be JanaJal app can access your current location.'
+      '\n - You should make sure you keep your mobile telephone or tablet and the security details you use to log onto the Mobile App safe and secure.'
+      '\n - You must let us know as soon as possible if these are lost or stolen or misappropriated or used the card in an unauthorized and unusual manner.'
+      '\n - You may be responsible for unauthorized payments made from your accounts if you have not kept your mobile telephone or tablet and your security details safe.';
+
+  static const String privacyPolicyDesc =
+      'By completing  this survey you agree to our privacy policy.';
 }
 
 class RazorPayKey {

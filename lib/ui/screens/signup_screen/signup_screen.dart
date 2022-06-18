@@ -6,6 +6,8 @@ import 'package:janajal/ui/helping_widget/custom_dropdown.dart';
 import 'package:janajal/ui/helping_widget/custom_textfield.dart';
 import 'package:janajal/ui/helping_widget/round_button.dart';
 import 'package:janajal/ui/screens/login_screen/widget.dart';
+import 'package:janajal/ui/screens/privacy_policy/privacy_policy.dart';
+import 'package:janajal/ui/screens/tAndC/t_and_c_screen.dart';
 import 'package:janajal/utils/validator.dart';
 
 class SignupScreen extends StatefulWidget {
@@ -49,13 +51,26 @@ class _SignupScreenState extends State<SignupScreen> {
     } else {
       genderError = '';
     }
+    print(emailError.isEmpty);
+    print(1);
+
+    print(passwordError.isEmpty);
+    print(2);
+
+    print(mobileError.isEmpty);
+    print(1);
+
+    print(firstNameError.isEmpty);
+    print(3);
+
+    print(genderError.isEmpty);
 
     setState(() {});
     if (emailError.isEmpty &&
         passwordError.isEmpty &&
         mobileError.isEmpty &&
         firstNameError.isEmpty &&
-        pincodeError.isEmpty &&
+        firstNameError.isEmpty &&
         genderError.isEmpty) {
       return true;
     } else
@@ -114,9 +129,60 @@ class _SignupScreenState extends State<SignupScreen> {
                     )
                   ],
                 ),
+
                 SizedBox(
                   height: size.width * 0.12,
                 ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    MaterialButton(
+                      elevation: 10,
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+                      onPressed: () {
+                        SocialAuth.getGoogleSigup(context);
+                      },
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(40)),
+                      color: Colors.white,
+                      child: Image.asset(
+                        'assets/images/icons/google_icon.png',
+                        width: 30,
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    MaterialButton(
+                      elevation: 10,
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+                      onPressed: () {},
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(40)),
+                      color: Colors.white,
+                      child: Image.asset(
+                        'assets/images/icons/facebook_icon.png',
+                        width: 30,
+                      ),
+                    )
+                  ],
+                ),
+                SizedBox(
+                  height: size.width * 0.05,
+                ),
+                const Text(
+                  '-OR-',
+                  style: TextStyle(
+                      fontSize: 20,
+                      color: Colors.grey,
+                      fontWeight: FontWeight.w600),
+                ),
+                SizedBox(
+                  height: size.width * 0.05,
+                ),
+
                 Row(
                   children: [
                     Flexible(
@@ -269,74 +335,88 @@ class _SignupScreenState extends State<SignupScreen> {
                   height: 10,
                 ),
                 RoundButton(
-                    onPress: () async {
-                      if (await validateForm()) {
-                        AuthServices.userSignup(
-                          context,
-                          emailController.text.trim(),
-                          passwordController.text.trim(),
-                          firstNameController.text.trim(),
-                          lastNameController.text.trim(),
-                          gender!.trim(),
-                          "0",
-                          emailController.text.trim(),
-                          mobileController.text.trim(),
-                          "-",
-                          // pincodeController.text.trim(),
-                          'India',
-                          // addressController.text.trim(),
-                          "-",
-                        );
-                      }
-                    },
-                    color: Colors.blue.shade900,
-                    text: 'Sign Up'),
-                SizedBox(
-                  height: size.width * 0.05,
-                ),
-                const Text(
-                  '-OR-',
-                  style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.grey,
-                      fontWeight: FontWeight.w600),
+                  onPress: () async {
+                    print(await validateForm());
+                    if (await validateForm()) {
+                      await AuthServices.userSignup(
+                        context,
+                        emailController.text.trim(),
+                        passwordController.text.trim(),
+                        firstNameController.text.trim(),
+                        lastNameController.text.trim(),
+                        gender!.trim(),
+                        "0",
+                        emailController.text.trim(),
+                        mobileController.text.trim(),
+                        "-",
+                        // pincodeController.text.trim(),
+                        'India',
+                        // addressController.text.trim(),
+                        "-",
+                      );
+                    }
+                  },
+                  color: Colors.blue.shade900,
+                  text: 'Sign Up',
                 ),
                 SizedBox(
-                  height: size.width * 0.05,
+                  height: 20,
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                Column(
                   children: [
-                    MaterialButton(
-                      elevation: 10,
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 30, vertical: 10),
-                      onPressed: () {
-                        SocialAuth.getGoogleSigup(context);
-                      },
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(40)),
-                      color: Colors.white,
-                      child: Image.asset(
-                        'assets/images/icons/google_icon.png',
-                        width: 30,
-                      ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text(
+                          "By singning up you agree to our ",
+                          style: TextStyle(
+                              fontSize: 18,
+                              color: Colors.black,
+                              fontWeight: FontWeight.w600),
+                        ),
+                      ],
                     ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    MaterialButton(
-                      elevation: 10,
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 30, vertical: 10),
-                      onPressed: () {},
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(40)),
-                      color: Colors.white,
-                      child: Image.asset(
-                        'assets/images/icons/facebook_icon.png',
-                        width: 30,
-                      ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        InkWell(
+                          onTap: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (BuildContext context) {
+                              return PrivacyPolicyScreen();
+                            }));
+                          },
+                          child: Text(
+                            "Privacy Policy",
+                            style: TextStyle(
+                                fontSize: 16,
+                                color: Colors.blue.shade600,
+                                fontWeight: FontWeight.w600),
+                          ),
+                        ),
+                        Text(
+                          "and",
+                          style: TextStyle(
+                              fontSize: 16,
+                              color: Colors.black,
+                              fontWeight: FontWeight.w600),
+                        ),
+                        InkWell(
+                          onTap: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (BuildContext context) {
+                              return TermsConditionsScreen();
+                            }));
+                          },
+                          child: Text(
+                            "Terms and Condition",
+                            style: TextStyle(
+                                fontSize: 16,
+                                color: Colors.blue.shade600,
+                                fontWeight: FontWeight.w600),
+                          ),
+                        ),
+                      ],
                     )
                   ],
                 ),

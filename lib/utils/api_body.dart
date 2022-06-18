@@ -215,6 +215,38 @@ class ApiBody {
     return topHeader + body + closeEnvelope;
   }
 
+  static String getOfferList(
+    String userName,
+    String password,
+  ) {
+    String body = '<soapenv:Body>'
+        '<web:getPromoList>'
+        '<userName>$userName</userName>'
+        '<password>$password</password>'
+        '</web:getPromoList>'
+        '</soapenv:Body>';
+
+    return topHeader + body + closeEnvelope;
+  }
+
+  static String checkPromoBody(
+    String userName,
+    String password,
+    String promoCode,
+    String amount,
+  ) {
+    String body = '<soapenv:Body>'
+        '<web:checkPromo>'
+        '<userName>$userName</userName>'
+        '<password>$password</password>'
+        '<promoCode>$promoCode</promoCode>'
+        '<amount>$amount</amount>'
+        '</web:checkPromo>'
+        '</soapenv:Body>';
+
+    return topHeader + body + closeEnvelope;
+  }
+
   static String getCurrentOrderListVBody(
     String userName,
     String password,
@@ -380,6 +412,8 @@ class ApiBody {
         '<watmDisp>$deviceId</watmDisp>'
         '</web:saveQRData>'
         '</soapenv:Body>';
+    print(body);
+    print("????????????????????????????");
     return topHeader + body + closeEnvelope;
   }
 

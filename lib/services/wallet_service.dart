@@ -120,7 +120,7 @@ class WalletServices {
             '118@$username',
             password!,
             amount,
-            discountAmt,
+            40.toString(),
             promo,
             txnId,
             walletNo!,

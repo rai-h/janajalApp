@@ -1,3 +1,4 @@
+import 'package:easy_localization/src/public_ext.dart';
 import 'package:flutter/material.dart';
 import 'package:janajal/controller/order.controller.dart';
 import 'package:janajal/controller/ui.controller.dart';
@@ -46,7 +47,7 @@ class _DeliveryPageIndicatorState extends State<DeliveryPageIndicator> {
                     padding: const EdgeInsets.symmetric(vertical: 10),
                     child: Center(
                       child: Text(
-                        'Current',
+                        "my_order_screen.current".tr(),
                         style: TextStyle(
                             fontSize: 16,
                             color: notifier.selectedDeliveryTab == 0
@@ -74,7 +75,7 @@ class _DeliveryPageIndicatorState extends State<DeliveryPageIndicator> {
                     padding: const EdgeInsets.symmetric(vertical: 10),
                     child: Center(
                       child: Text(
-                        'Previous',
+                         "my_order_screen.previous".tr(),
                         style: TextStyle(
                             fontSize: 16,
                             color: notifier.selectedDeliveryTab == 1
@@ -102,7 +103,7 @@ class _DeliveryPageIndicatorState extends State<DeliveryPageIndicator> {
                     padding: const EdgeInsets.symmetric(vertical: 10),
                     child: Center(
                       child: Text(
-                        'Cancelled',
+                         "my_order_screen.cancelled".tr(),
                         style: TextStyle(
                             fontSize: 16,
                             color: notifier.selectedDeliveryTab == 2
@@ -177,7 +178,7 @@ class OrderCard extends StatelessWidget {
                 Row(
                   children: [
                     Text(
-                      'Amount: ',
+                      'my_order_screen.amount'.tr()+" : ",
                       style: TextStyle(
                           fontSize: 16,
                           color: Colors.grey.shade600,
@@ -195,7 +196,7 @@ class OrderCard extends StatelessWidget {
                 Row(
                   children: [
                     Text(
-                      'Quantity: ',
+                      'my_order_screen.quantity'.tr()+" : ",
                       style: TextStyle(
                           fontSize: 16,
                           color: Colors.grey.shade600,
@@ -218,7 +219,7 @@ class OrderCard extends StatelessWidget {
             Row(
               children: [
                 Text(
-                  'Delivery Window: ',
+                  'my_order_screen.delivery_window'.tr()+" : ",
                   style: TextStyle(
                       fontSize: 16,
                       color: Colors.grey.shade600,
@@ -236,7 +237,7 @@ class OrderCard extends StatelessWidget {
             Row(
               children: [
                 Text(
-                  'Transaction Id: ',
+                  'my_order_screen.transaction_id'.tr()+" : ",
                   style: TextStyle(
                       fontSize: 16,
                       color: Colors.grey.shade600,

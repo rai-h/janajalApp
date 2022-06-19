@@ -449,6 +449,7 @@ class ApiBody {
         '<merchantTxnId>$merchantTxnId</merchantTxnId>'
         '</web:saveWalletRecharge>'
         '</soapenv:Body>';
+      print(body);
     return topHeader + body + closeEnvelope;
   }
 

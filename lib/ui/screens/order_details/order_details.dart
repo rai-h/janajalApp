@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:easy_localization/src/public_ext.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:janajal/models/order_details_model.dart';
@@ -51,8 +52,8 @@ class _OrderDetailsState extends State<OrderDetails> {
         backgroundColor: Colors.white,
         elevation: 1,
         centerTitle: true,
-        title: const Text(
-          'My Order',
+        title:  Text(
+          'navbar.my_orders'.tr(),
           style: TextStyle(
               fontSize: 24,
               color: Colors.blueGrey,
@@ -102,7 +103,7 @@ class _OrderDetailsState extends State<OrderDetails> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'Order Details ',
+                    'my_order_screen.order_details'.tr(),
                     style: TextStyle(
                         fontSize: 18,
                         color: Colors.grey.shade800,
@@ -129,7 +130,7 @@ class _OrderDetailsState extends State<OrderDetails> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'Trip Code: ',
+                    'my_order_screen.trip_code'.tr(),
                     style: TextStyle(
                         fontSize: 16,
                         color: Colors.grey.shade800,
@@ -156,7 +157,7 @@ class _OrderDetailsState extends State<OrderDetails> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'Status ',
+                    'my_order_screen.status'.tr(),
                     style: TextStyle(
                         fontSize: 16,
                         color: Colors.grey.shade800,
@@ -183,7 +184,7 @@ class _OrderDetailsState extends State<OrderDetails> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'Address ',
+                    'my_order_screen.address'.tr(),
                     style: TextStyle(
                         fontSize: 16,
                         color: Colors.grey.shade800,
@@ -210,7 +211,7 @@ class _OrderDetailsState extends State<OrderDetails> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Driver Name ',
+                    'my_order_screen.driver_name'.tr(),
                     style: TextStyle(
                         fontSize: 16,
                         color: Colors.grey.shade800,
@@ -237,7 +238,7 @@ class _OrderDetailsState extends State<OrderDetails> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'Transaction Id ',
+                    'my_order_screen.transaction_id'.tr(),
                     style: TextStyle(
                         fontSize: 16,
                         color: Colors.grey.shade800,

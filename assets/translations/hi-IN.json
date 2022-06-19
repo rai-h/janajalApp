@@ -7,7 +7,7 @@
     "about_us": "हमारे बारे में"
   },
   "home_screen": {
-    "locate_watm": "वाटम खोजें",
+    "locate_watm": "WATM खोजें",
     "scan": "स्कैन करें",
     "faqs": "प्रश्नोत्तर",
     "prepaid_card": "प्रीपेड कार्ड",
@@ -19,5 +19,91 @@
   },
   "profile_screen": {
     "change_language": "भाषा बदलो"
+  },  
+  "my_order_screen":{
+    "current":"वर्तमान",
+    "previous":"पिछले",
+    "cancelled":"रद्द",
+    "amount":"राशी",
+    "quantity":"मात्रा",
+    "order_details":"ऑर्डर का विवरण",
+    "delivery_window":"डिलीवरी का समय",
+    "transaction_id":"ट्रांजैक्शन क्र०",
+    "trip_code":"ट्रिप न ०",
+    "status":"स्टेटस",
+    "address":"डिलीवरी का पता",
+    "driver_name":"ड्राइवर का नाम"
+  },
+  "wallet_screen":{
+    "wallet_balance":"उपलब्ध राशी",
+    "txn_log":"लेन देन विवरण",
+    "top_log":"रिचार्ज विवरण",
+    "promo_balance":"प्रोमो शेष राशि",
+    "expiry":"समाप्ति की तिथि",
+    "amount":"राशी",
+    "quantity":"मात्रा",
+    "location":"Location",
+    "status":"Status",
+    "paid_amount":"भरी गई राशी",
+    "wallet_no":"वॉलट क्र०",
+    "balance":"उपलब्ध राशी",
+    "apply_promo":"प्रोमो कोड लगाएं",
+    "get_offers":"प्रोमोकोड ढूंढें",
+    "proceed_to_pay":"भुगतान करें",
+    "add_money":"राशी जोड़ें",
+    "apply":"प्रयोग करें",
+    "my_offer":"मेरे ऑफ़र"
+  },
+
+  "watm_locator_screnn":{
+   "select_state":"Select State",
+   "locate":"Locate",
+   "location":"Location"
+  },
+
+  "my_order_screnn":{
+    "select_delivery_window":"Select Delivery Window",
+    "volume":"Volume",
+    "delivery_date":"Delivery Date",
+    "select_address":"Select Address",
+    "place_order":"Place Order",
+    "address":"Address",
+    "landmark":"Landmark",
+    "delivery_point":"Delivery Point",
+    "delivery_address":"Delivery Address",
+    "delivery_date_time" : "Delivery Date & Time",
+    "order_summary":"Order Summary",
+    "quantity":"मात्रा",
+    "per_litre_cost":"Per Litre Cost",
+    "total_cost":"Total Cost",
+    "proceed_to_payment":"Proceed To Payment",
+    "review_your_order":"Review Your Order"
+  },
+  "my_addresses_screen":{
+    "my_addresses":"My Addresses",
+    "address":"Address",
+    "landmark":"Landmark",
+    "add_new_location":"Add New Location",
+    "delivery_point":"Delivery Point",
+    "add_location":"Add Location",
+    "city":"City",
+    "state":"State",
+    "pincode":"Pincode",
+    "landmarrk":"Landmark",
+    "locate_on_map":"Locate On Map",
+    "edit":"Edit",
+    "delete":"Delete"
+  },
+  "prepaid_card_screen": {
+    "prepaid_card":"Prepaid Card",
+    "janajal_prepaid_card":"JANAJAL PREPAID CARD",
+    "card_no":"Card No",
+    "balance":"उपलब्ध राशी",
+    "txn_log":"लेन देन विवरण",
+    "top_log":"रिचार्ज विवरण",
+    "recharge":"RECHARGE",
+    "paid_amount":"भरी गई राशी",
+    "amount":"राशी"
   }
+
 }

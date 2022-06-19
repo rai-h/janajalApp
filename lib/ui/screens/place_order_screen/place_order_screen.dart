@@ -1,3 +1,4 @@
+import 'package:easy_localization/src/public_ext.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:janajal/models/delivery_address_model.dart';
@@ -170,7 +171,7 @@ class _PlaceOrderScreenState extends State<PlaceOrderScreen> {
                 errorText: _amountErrorText,
                 textInputType: TextInputType.number,
                 controller: _qtyController,
-                text: 'Amount (Ltrs)',
+                text: 'my_order_screnn.volume'.tr(),
                 prefixIcon: Icon(Icons.water_drop_rounded),
               ),
               const SizedBox(
@@ -181,7 +182,7 @@ class _PlaceOrderScreenState extends State<PlaceOrderScreen> {
                 readOnly: true,
                 errorText: _deliveryDateErrorText,
                 controller: _dateController,
-                text: 'Delivery Date',
+                text: 'my_order_screnn.delivery_date'.tr(),
                 onTap: () async {
                   await _selectDate(context);
                 },
@@ -196,7 +197,7 @@ class _PlaceOrderScreenState extends State<PlaceOrderScreen> {
                   child: DropdownButton2<String>(
                     isExpanded: true,
                     hint: Text(
-                      "Select Delivery Window",
+                      'my_order_screnn.select_delivery_window'.tr(),
                       style: TextStyle(
                           fontWeight: FontWeight.w700,
                           fontSize: 15,
@@ -265,7 +266,7 @@ class _PlaceOrderScreenState extends State<PlaceOrderScreen> {
               Align(
                 alignment: Alignment.topLeft,
                 child: Text(
-                  'Select Address',
+                  'my_order_screnn.select_address'.tr(),
                   style: TextStyle(
                       fontWeight: FontWeight.w700,
                       fontSize: 20,

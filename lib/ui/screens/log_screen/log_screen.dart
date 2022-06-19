@@ -1,3 +1,4 @@
+import 'package:easy_localization/src/public_ext.dart';
 import 'package:flutter/material.dart';
 import 'package:janajal/controller/auth.controller.dart';
 import 'package:janajal/services/prepaid_card_service.dart';
@@ -40,7 +41,7 @@ class _LogScreenState extends State<LogScreen> {
         '';
     print(widget.isTopUp);
     print(widget.isWallet);
-    heading = widget.isTopUp ? 'TopUp Details' : 'Transaction Details';
+    heading = widget.isTopUp ? 'wallet_screen.top_log'.tr() : 'wallet_screen.txn_log'.tr();
     dataList = widget.isWallet
         ? widget.isTopUp
             ? await WalletServices.getWalletTopUpList(context)
@@ -94,7 +95,7 @@ class _LogScreenState extends State<LogScreen> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Text(
-                              'Wallet No : ',
+                              'wallet_screen.wallet_no'.tr()+" : ",
                               style: TextStyle(
                                   fontSize: 18,
                                   color: Colors.grey.shade800,

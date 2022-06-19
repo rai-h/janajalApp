@@ -1,3 +1,4 @@
+import 'package:easy_localization/src/public_ext.dart';
 import 'package:flutter/material.dart';
 import 'package:janajal/controller/order.controller.dart';
 import 'package:janajal/controller/ui.controller.dart';
@@ -30,8 +31,8 @@ class _DeliveryScreenState extends State<DeliveryScreen> {
         backgroundColor: Colors.white,
         elevation: 1,
         centerTitle: true,
-        title: const Text(
-          'My Orders',
+        title:  Text(
+          'navbar.my_orders'.tr(),
           style: TextStyle(
               fontSize: 30,
               color: Colors.blueGrey,

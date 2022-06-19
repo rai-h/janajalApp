@@ -1,3 +1,4 @@
+import 'package:easy_localization/src/public_ext.dart';
 import 'package:flutter/material.dart';
 
 class WalletTxnCard extends StatefulWidget {
@@ -54,7 +55,7 @@ class _WalletTxnCardState extends State<WalletTxnCard> {
                 Row(
                   children: [
                     Text(
-                      'Amount: ',
+                      'wallet_screen.paid_amount'.tr()+" : ",
                       style: TextStyle(
                           fontSize: 16,
                           color: Colors.grey.shade600,
@@ -72,7 +73,7 @@ class _WalletTxnCardState extends State<WalletTxnCard> {
                 Row(
                   children: [
                     Text(
-                      'Quantity: ',
+                      'wallet_screen.quantity'.tr()+" : ",
                       style: TextStyle(
                           fontSize: 16,
                           color: Colors.grey.shade600,
@@ -212,7 +213,7 @@ class _WalletTopUpCardState extends State<WalletTopUpCard> {
                 Row(
                   children: [
                     Text(
-                      'Paid Amount: ',
+                      'wallet_screen.paid_amount'.tr()+" : ",
                       style: TextStyle(
                           fontSize: 16,
                           color: Colors.grey.shade600,
@@ -230,7 +231,7 @@ class _WalletTopUpCardState extends State<WalletTopUpCard> {
                 Row(
                   children: [
                     Text(
-                      'Amount: ',
+                     'wallet_screen.amount'.tr()+" : ",
                       style: TextStyle(
                           fontSize: 16,
                           color: Colors.grey.shade600,

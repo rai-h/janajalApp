@@ -1,3 +1,4 @@
+import 'package:easy_localization/src/public_ext.dart';
 import 'package:flutter/material.dart';
 import 'package:janajal/controller/auth.controller.dart';
 import 'package:janajal/controller/ui.controller.dart';
@@ -36,6 +37,7 @@ class _WalletAddMoneyScreenState extends State<WalletAddMoneyScreen> {
   bool showPromo = false;
   bool promoAplied = false;
   OffersModel? _appliedPromo;
+  String discountAmount = '';
 
   String promoErrorText = '';
   @override
@@ -80,7 +82,7 @@ class _WalletAddMoneyScreenState extends State<WalletAddMoneyScreen> {
               child: Column(
                 children: [
                   Text(
-                    'My Offers',
+                    'wallet_screen.my_offer'.tr(),
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 30,
@@ -122,7 +124,7 @@ class _WalletAddMoneyScreenState extends State<WalletAddMoneyScreen> {
                               padding: EdgeInsets.symmetric(
                                   horizontal: 10, vertical: 5),
                               child: Text(
-                                'Apply',
+                                'wallet_screen.apply'.tr(),
                                 style: TextStyle(
                                     color: Colors.white, fontSize: 20),
                               ),
@@ -166,9 +168,16 @@ class _WalletAddMoneyScreenState extends State<WalletAddMoneyScreen> {
         _appliedPromo = element;
       }
     });
+
     if (_appliedPromo != null) {
       if (await WalletServices.checkPromo(context, _appliedPromo!.discount!,
           _appliedPromo!.amount!, _appliedPromo!.promoCode!)) {
+        discountAmount = (double.parse(_appliedPromo!.amount!) *
+                (double.parse(_appliedPromo!.discount!) / 100))
+            .toString();
+        String amount = (double.parse(_appliedPromo!.amount!) +
+                (double.parse(discountAmount)))
+            .toString();
         _amountController.text = _appliedPromo!.amount!;
         promoAplied = true;
         setState(() {});
@@ -187,7 +196,7 @@ class _WalletAddMoneyScreenState extends State<WalletAddMoneyScreen> {
     WalletServices.updateWalletRechargeBody(
         context,
         _amountController.text,
-        _appliedPromo == null ? "" : _appliedPromo!.discount!,
+        discountAmount,
         _appliedPromo == null ? "" : _appliedPromo!.promoCode!,
         txnId);
   }
@@ -224,8 +233,8 @@ class _WalletAddMoneyScreenState extends State<WalletAddMoneyScreen> {
         backgroundColor: Colors.white,
         elevation: 1,
         centerTitle: true,
-        title: const Text(
-          'Add Money',
+        title:  Text(
+          'wallet_screen.add_money'.tr(),
           style: TextStyle(
               fontSize: 24,
               color: Colors.blueGrey,
@@ -288,7 +297,7 @@ class _WalletAddMoneyScreenState extends State<WalletAddMoneyScreen> {
                           Row(
                             children: [
                               Text(
-                                'Wallet No.: ',
+                                'wallet_screen.wallet_no'.tr()+" : ",
                                 style: TextStyle(
                                     fontSize: 16,
                                     color: Colors.grey.shade800,
@@ -309,7 +318,7 @@ class _WalletAddMoneyScreenState extends State<WalletAddMoneyScreen> {
                           Row(
                             children: [
                               Text(
-                                'Balance ',
+                                'wallet_screen.balance'.tr()+" : ",
                                 style: TextStyle(
                                     fontSize: 16,
                                     color: Colors.grey.shade800,
@@ -443,7 +452,7 @@ class _WalletAddMoneyScreenState extends State<WalletAddMoneyScreen> {
                         child: Row(
                           children: [
                             Text(
-                              'Apply Promo',
+                              'wallet_screen.apply_promo'.tr(),
                               style: TextStyle(
                                   fontSize: 20,
                                   color: Colors.blue,
@@ -516,8 +525,8 @@ class _WalletAddMoneyScreenState extends State<WalletAddMoneyScreen> {
                                     showOfferListDialog(
                                         context, _offerModelList);
                                   },
-                                  child: const Text(
-                                    'Get Offers',
+                                  child: Text(
+                                    'wallet_screen.get_offers'.tr(),
                                     style: TextStyle(
                                         color: Colors.white, fontSize: 18),
                                   ),
@@ -543,9 +552,7 @@ class _WalletAddMoneyScreenState extends State<WalletAddMoneyScreen> {
                           if (await WalletServices.saveWalletRecharge(
                               context,
                               _amountController.text,
-                              _appliedPromo == null
-                                  ? ""
-                                  : _appliedPromo!.discount!,
+                              discountAmount,
                               _appliedPromo == null
                                   ? ""
                                   : _appliedPromo!.promoCode!,
@@ -557,8 +564,8 @@ class _WalletAddMoneyScreenState extends State<WalletAddMoneyScreen> {
                           setState(() {});
                         }
                       },
-                      child: const Text(
-                        'Proceed To Pay',
+                      child:  Text(
+                        'wallet_screen.proceed_to_pay'.tr(),
                         style: TextStyle(color: Colors.white, fontSize: 18),
                       ),
                     ),

@@ -19,5 +19,91 @@
   },
   "profile_screen": {
     "change_language": "Change Language"
+  },
+  "my_order_screen":{
+    "current":"Current",
+    "previous":"Previous",
+    "cancelled":"Cancelled",
+    "amount":"Amount",
+    "quantity":"Quantity",
+    "order_details":"",
+    "delivery_window":"Delivery Window",
+    "transaction_id":"Transaction Id",
+    "trip_code":"Trip Code",
+    "status":"Status",
+    "address":"Address",
+    "driver_name":"Driver Name"
+  },
+  "wallet_screen":{
+    "wallet_balance":"Wallet Balance",
+    "txn_log":"TXN LOG",
+    "top_log":"TOPUP LOG",
+    "promo_balance":"Promo Balance",
+    "expiry":"Expiry",
+    "amount":"Amount",
+    "quantity":"Quantity",
+    "location":"Location",
+    "status":"Status",
+    "paid_amount":"Paid Amount",
+    "wallet_no":"Wallet No",
+    "balance":"Balance",
+    "apply_promo":"Apply Promo",
+    "get_offers":"Get Offers",
+    "proceed_to_pay":"Proceed To Pay",
+    "add_money":"Add Money",
+    "apply":"Apply",
+    "my_offer":"My Offer"
+
+  },
+
+  "watm_locator_screnn":{
+   "select_state":"Select State",
+   "locate":"Locate",
+   "location":"Location"
+  },
+
+  "my_order_screnn":{
+    "select_delivery_window":"Select Delivery Window",
+    "volume":"Volume",
+    "delivery_date":"Delivery Date",
+    "select_address":"Select Address",
+    "place_order":"Place Order",
+    "address":"Address",
+    "landmark":"Landmark",
+    "delivery_point":"Delivery Point",
+    "delivery_address":"Delivery Address",
+    "delivery_date_time" : "Delivery Date & Time",
+    "order_summary":"Order Summary",
+    "quantity":"Quantity",
+    "per_litre_cost":"Per Litre Cost",
+    "total_cost":"Total Cost",
+    "proceed_to_payment":"Proceed To Payment",
+    "review_your_order":"Review Your Order"
+  },
+  "my_addresses_screen":{
+    "my_addresses":"My Addresses",
+    "address":"Address",
+    "landmark":"Landmark",
+    "add_new_location":"Add New Location",
+    "delivery_point":"Delivery Point",
+    "add_location":"Add Location",
+    "city":"City",
+    "state":"State",
+    "pincode":"Pincode",
+    "landmarrk":"Landmark",
+    "locate_on_map":"Locate On Map",
+    "edit":"Edit",
+    "delete":"Delete"
+  },
+  "prepaid_card_screen": {
+    "prepaid_card":"Prepaid Card",
+    "janajal_prepaid_card":"JANAJAL PREPAID CARD",
+    "card_no":"Card No",
+    "balance":"Balance",
+    "txn_log":"TXN LOG",
+    "top_log":"TOPUP LOG",
+    "recharge":"RECHARGE",
+    "paid_amount":"Paid Amount",
+    "amount":"Amount"
   }
 }

@@ -1,3 +1,4 @@
+import 'package:easy_localization/src/public_ext.dart';
 import 'package:flutter/material.dart';
 import 'package:janajal/controller/auth.controller.dart';
 import 'package:janajal/controller/ui.controller.dart';
@@ -45,8 +46,8 @@ class _WalletScreenState extends State<WalletScreen> {
         backgroundColor: Colors.white,
         elevation: 1,
         centerTitle: true,
-        title: const Text(
-          'Wallet',
+        title:  Text(
+          'navbar.my_wallet'.tr(),
           style: TextStyle(
               fontSize: 30,
               color: Colors.blueGrey,
@@ -115,7 +116,7 @@ class _WalletScreenState extends State<WalletScreen> {
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
-                                      'Wallet Balance',
+                                      'wallet_screen.wallet_balance'.tr(),
                                       style: TextStyle(
                                           fontSize: 20,
                                           color: Colors.grey.shade800,
@@ -157,8 +158,8 @@ class _WalletScreenState extends State<WalletScreen> {
                                           borderRadius:
                                               BorderRadius.circular(40)),
                                       color: Janajal.secondaryColor,
-                                      child: const Text(
-                                        'TXN LOG',
+                                      child:  Text(
+                                        'wallet_screen.txn_log'.tr(),
                                         style: TextStyle(
                                             fontSize: 16,
                                             color: Colors.white,
@@ -180,8 +181,8 @@ class _WalletScreenState extends State<WalletScreen> {
                                           borderRadius:
                                               BorderRadius.circular(40)),
                                       color: Colors.green.shade800,
-                                      child: const Text(
-                                        'TOPUP LOG',
+                                      child:  Text(
+                                         'wallet_screen.top_log'.tr(),
                                         style: TextStyle(
                                           fontSize: 16,
                                           color: Colors.white,
@@ -214,7 +215,7 @@ class _WalletScreenState extends State<WalletScreen> {
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
-                                      'Promo Balance',
+                                      'wallet_screen.promo_balance'.tr(),
                                       style: TextStyle(
                                           fontSize: 20,
                                           color: Colors.grey.shade800,
@@ -239,16 +240,16 @@ class _WalletScreenState extends State<WalletScreen> {
                                 Row(
                                   children: [
                                     Text(
-                                      'Expiry: ',
+                                      'wallet_screen.expiry'.tr()+" : ",
                                       style: TextStyle(
-                                          fontSize: 18,
+                                          fontSize: 15,
                                           color: Colors.grey.shade800,
                                           fontWeight: FontWeight.w800),
                                     ),
                                     Text(
                                       '${_walletDetailModel!.expiryDate!}',
                                       style: TextStyle(
-                                          fontSize: 18,
+                                          fontSize: 16,
                                           color: Colors.grey.shade500,
                                           fontWeight: FontWeight.w800),
                                     ),
@@ -278,8 +279,8 @@ class _WalletScreenState extends State<WalletScreen> {
                           child: Container(
                             alignment: Alignment.center,
                             width: size.width * 0.8,
-                            child: const Text(
-                              'Add Money',
+                            child:  Text(
+                              'wallet_screen.add_money'.tr(),
                               style: TextStyle(
                                   fontSize: 18,
                                   color: Colors.white,

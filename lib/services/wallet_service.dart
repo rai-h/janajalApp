@@ -120,7 +120,7 @@ class WalletServices {
             '118@$username',
             password!,
             amount,
-            40.toString(),
+            discountAmt,
             promo,
             txnId,
             walletNo!,
@@ -179,17 +179,14 @@ class WalletServices {
             txnId,
           ),
           context: context);
-
+      print(data);
       if (data['S:Envelope']['S:Body']['ns2:updateWalletRechargeResponse']
               ['return'] ==
           '1') {
-        Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(
-                builder: ((context) => MainWidget(
-                      showToast: true,
-                      toastString: 'Wallet Recharge Successful',
-                    ))),
-            (route) => false);
+        CustomDialogs.showToast('Wallet Recharge Successful');
+        await Future.delayed(Duration(milliseconds: 1600));
+        await getWalletDetails(context);
+        Navigator.of(context).pop();
         return true;
       }
 

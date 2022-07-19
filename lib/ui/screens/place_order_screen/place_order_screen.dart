@@ -66,7 +66,9 @@ class _PlaceOrderScreenState extends State<PlaceOrderScreen> {
       _deliveryDateErrorText = 'Please choose a Delivery Date';
     } else {
       _deliveryDateErrorText = '';
-      _deliveryWindowErrorText = validateDeliveryWindow();
+      _deliveryWindowErrorText = selectedDeliveryWindow == null
+          ? "Please choose a Delivery Window"
+          : validateDeliveryWindow();
     }
 
     if (selectedAdd == null) {
@@ -96,6 +98,7 @@ class _PlaceOrderScreenState extends State<PlaceOrderScreen> {
     DateTime slot1Pm = DateTime(now.year, now.month, now.day, 12, 35).toLocal();
     DateTime slot3Pm = DateTime(now.year, now.month, now.day, 14, 35).toLocal();
     DateTime slot5Pm = DateTime(now.year, now.month, now.day, 16, 35).toLocal();
+
     if (selectedDateTime != null) {
       if (selectedDateTime!
           .isAtSameMomentAs(DateTime(now.year, now.month, now.day).toLocal())) {
@@ -144,8 +147,8 @@ class _PlaceOrderScreenState extends State<PlaceOrderScreen> {
         backgroundColor: Colors.white,
         elevation: 1,
         centerTitle: true,
-        title: const Text(
-          'My Order',
+        title: Text(
+          'home_screen.place_order'.tr(),
           style: TextStyle(
               fontSize: 24,
               color: Colors.blueGrey,
@@ -330,8 +333,8 @@ class _PlaceOrderScreenState extends State<PlaceOrderScreen> {
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(40)),
                 color: Colors.blue.shade900,
-                child: const Text(
-                  'Place Order',
+                child: Text(
+                  'my_order_screnn.place_order'.tr(),
                   style: TextStyle(
                     fontSize: 16,
                     color: Colors.white,

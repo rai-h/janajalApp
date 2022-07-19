@@ -1,4 +1,5 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:janajal/services/watm_service.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -50,8 +51,8 @@ class _WatmLocatorScreeState extends State<WatmLocatorScree> {
         backgroundColor: Colors.white,
         elevation: 1,
         centerTitle: true,
-        title: const Text(
-          'WATM Locator',
+        title: Text(
+          'home_screen.locate_watm'.tr(),
           style: TextStyle(
               fontSize: 24,
               color: Colors.blueGrey,
@@ -70,7 +71,7 @@ class _WatmLocatorScreeState extends State<WatmLocatorScree> {
                   padding:
                       const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                   child: Text(
-                    'Select State',
+                    'watm_locator_screnn.select_state'.tr(),
                     style: TextStyle(
                         fontSize: 20,
                         color: Colors.grey.shade700,
@@ -84,7 +85,7 @@ class _WatmLocatorScreeState extends State<WatmLocatorScree> {
                   child: DropdownButton2<Map<String, dynamic>>(
                     isExpanded: true,
                     hint: Text(
-                      'Select State',
+                      'watm_locator_screnn.select_state'.tr(),
                       style: TextStyle(
                           fontWeight: FontWeight.w700,
                           fontSize: 18,
@@ -148,7 +149,7 @@ class _WatmLocatorScreeState extends State<WatmLocatorScree> {
                   padding:
                       const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                   child: Text(
-                    'Select City',
+                    'watm_locator_screnn.select_city'.tr(),
                     style: TextStyle(
                         fontSize: 20,
                         color: Colors.grey.shade700,
@@ -162,7 +163,7 @@ class _WatmLocatorScreeState extends State<WatmLocatorScree> {
                   child: DropdownButton2<Map<String, dynamic>>(
                     isExpanded: true,
                     hint: Text(
-                      'Select City',
+                      'watm_locator_screnn.select_city'.tr(),
                       style: TextStyle(
                           fontWeight: FontWeight.w700,
                           fontSize: 18,
@@ -255,7 +256,8 @@ class _WatmLocatorScreeState extends State<WatmLocatorScree> {
                                   Row(
                                     children: [
                                       Text(
-                                        'Loction: ',
+                                        'watm_locator_screnn.location'.tr() +
+                                            " : ",
                                         style: TextStyle(
                                             fontSize: 16,
                                             color: Colors.grey.shade600,
@@ -278,7 +280,7 @@ class _WatmLocatorScreeState extends State<WatmLocatorScree> {
                                         color: Colors.red,
                                       ),
                                       Text(
-                                        'Locate',
+                                        'watm_locator_screnn.locate'.tr(),
                                         style: TextStyle(
                                             fontSize: 16,
                                             color: Colors.red.shade900,

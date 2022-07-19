@@ -67,6 +67,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
+      extendBody: false,
       appBar: AppBar(
         elevation: 0,
         automaticallyImplyLeading: false,
@@ -134,7 +135,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       width: 5,
                     ),
                     Text(
-                      'Rate Us',
+                      'home_screen.rate_us'.tr(),
                       style: TextStyle(
                           fontSize: 18,
                           color: Colors.white,
@@ -171,7 +172,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       width: 5,
                     ),
                     Text(
-                      'Share App',
+                      'home_screen.share_app'.tr(),
                       style: TextStyle(
                           fontSize: 18,
                           color: Colors.white,

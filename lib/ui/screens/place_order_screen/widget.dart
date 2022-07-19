@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:janajal/models/delivery_address_model.dart';
 
@@ -38,7 +39,7 @@ class _AddressBoxState extends State<AddressBox> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Address: ',
+                'my_order_screnn.address'.tr() + " : ",
                 style: TextStyle(
                     fontSize: 16,
                     color: Colors.grey.shade800,
@@ -70,7 +71,7 @@ class _AddressBoxState extends State<AddressBox> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Landmark: ',
+                'my_order_screnn.landmark'.tr() + " : ",
                 style: TextStyle(
                     fontSize: 14,
                     color: Colors.grey.shade800,
@@ -96,7 +97,7 @@ class _AddressBoxState extends State<AddressBox> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Delivery Point: ',
+                'my_order_screnn.delivery_point'.tr() + " : ",
                 style: TextStyle(
                     fontSize: 14,
                     color: Colors.grey.shade800,

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:janajal/controller/auth.controller.dart';
 import 'package:janajal/services/watm_service.dart';
@@ -140,7 +141,7 @@ class _QRScreenState extends State<QRScreen> {
                       textInputType: TextInputType.number,
                       prefixIcon: Icon(Icons.currency_rupee_rounded),
                       controller: _amountController,
-                      text: 'Enter Amount',
+                      text: "my_order_screnn.enter_amount".tr(),
                     ),
                     const SizedBox(
                       height: 10,

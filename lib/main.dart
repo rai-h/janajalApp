@@ -45,12 +45,14 @@ void configLoading() {
     ..loadingStyle = EasyLoadingStyle.dark
     ..indicatorSize = 45.0
     ..radius = 10.0
-    ..progressColor = Colors.yellow
-    ..backgroundColor = Colors.green
-    ..indicatorColor = Colors.yellow
-    ..textColor = Colors.yellow
+    ..progressColor = Colors.transparent
+    ..backgroundColor = Colors.transparent
+    ..indicatorColor = Colors.transparent
+    ..textColor = Colors.transparent
     ..maskColor = Colors.blue.withOpacity(0.5)
     ..userInteractions = false
+    ..progressColor = Colors.blue.shade900
+    ..boxShadow = []
     ..dismissOnTap = false;
 }
 

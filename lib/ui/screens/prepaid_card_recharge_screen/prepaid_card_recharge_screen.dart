@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:janajal/controller/auth.controller.dart';
 import 'package:janajal/models/offer_model.dart';
@@ -31,7 +32,7 @@ class _PrepaidCardRechargeScreenState extends State<PrepaidCardRechargeScreen> {
   Razorpay _razorpay = Razorpay();
   String txnId = DateTime.now().millisecondsSinceEpoch.toString();
   List<OffersModel> _offerModelList = [];
-
+  String discountAmount = '0';
   bool showPromo = false;
   bool promoAplied = false;
   OffersModel? _appliedPromo;
@@ -163,9 +164,16 @@ class _PrepaidCardRechargeScreenState extends State<PrepaidCardRechargeScreen> {
         _appliedPromo = element;
       }
     });
+
     if (_appliedPromo != null) {
       if (await WalletServices.checkPromo(context, _appliedPromo!.discount!,
           _appliedPromo!.amount!, _appliedPromo!.promoCode!)) {
+        discountAmount = (double.parse(_appliedPromo!.amount!) *
+                (double.parse(_appliedPromo!.discount!) / 100))
+            .toString();
+        // String amount = (double.parse(_appliedPromo!.amount!) +
+        //         (double.parse(discountAmount)))
+        // .toString();
         _amountController.text = _appliedPromo!.amount!;
         promoAplied = true;
         setState(() {});
@@ -177,6 +185,7 @@ class _PrepaidCardRechargeScreenState extends State<PrepaidCardRechargeScreen> {
     _amountController.text = _appliedPromo!.amount!;
     promoAplied = false;
     _appliedPromo = null;
+    discountAmount = '0';
     setState(() {});
   }
 
@@ -185,7 +194,7 @@ class _PrepaidCardRechargeScreenState extends State<PrepaidCardRechargeScreen> {
       context,
       widget.cardNo,
       _amountController.text,
-      _appliedPromo == null ? "" : _appliedPromo!.discount!,
+      discountAmount,
       _appliedPromo == null ? "" : _appliedPromo!.promoCode!,
       txnId,
     );
@@ -300,7 +309,7 @@ class _PrepaidCardRechargeScreenState extends State<PrepaidCardRechargeScreen> {
                       errorText: amountErrorText,
                       prefixIcon: Icon(Icons.currency_rupee_rounded),
                       controller: _amountController,
-                      text: 'Enter Amount',
+                      text: "my_order_screnn.enter_amount".tr(),
                     ),
                     const SizedBox(
                       height: 10,
@@ -507,7 +516,7 @@ class _PrepaidCardRechargeScreenState extends State<PrepaidCardRechargeScreen> {
                         context,
                         widget.cardNo,
                         _amountController.text,
-                        _appliedPromo == null ? "" : _appliedPromo!.discount!,
+                        discountAmount,
                         _appliedPromo == null ? "" : _appliedPromo!.promoCode!,
                         txnId)) {
                       callRazorPay();

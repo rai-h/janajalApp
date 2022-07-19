@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class PaymentInfo extends StatelessWidget {
@@ -28,7 +29,7 @@ class PaymentInfo extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                'Quantity',
+                'my_order_screnn.quantity'.tr(),
                 style: TextStyle(
                     fontSize: 16,
                     color: Colors.grey.shade800,
@@ -54,7 +55,7 @@ class PaymentInfo extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Per Litre Cost',
+                'my_order_screnn.per_litre_cost'.tr(),
                 style: TextStyle(
                     fontSize: 14,
                     color: Colors.grey.shade800,
@@ -80,7 +81,7 @@ class PaymentInfo extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Total Cost',
+                'my_order_screnn.total_cost'.tr(),
                 style: TextStyle(
                     fontSize: 14,
                     color: Colors.grey.shade800,
@@ -152,7 +153,7 @@ class PaymentInfo extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Total ',
+                'my_order_screnn.total'.tr(),
                 style: TextStyle(
                     fontSize: 18,
                     color: Colors.grey.shade800,

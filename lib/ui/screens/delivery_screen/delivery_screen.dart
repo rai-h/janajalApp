@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:janajal/controller/order.controller.dart';
 import 'package:janajal/controller/ui.controller.dart';
 import 'package:janajal/services/address_service.dart';
+import 'package:janajal/services/wow_service.dart';
 import 'package:janajal/ui/dialogs/custom_dialogs.dart';
 import 'package:janajal/ui/screens/delivery_screen/widgets.dart';
 import 'package:janajal/ui/screens/maps_screen/maps_screen.dart';
@@ -31,7 +32,7 @@ class _DeliveryScreenState extends State<DeliveryScreen> {
         backgroundColor: Colors.white,
         elevation: 1,
         centerTitle: true,
-        title:  Text(
+        title: Text(
           'navbar.my_orders'.tr(),
           style: TextStyle(
               fontSize: 30,
@@ -52,7 +53,7 @@ class _DeliveryScreenState extends State<DeliveryScreen> {
               height: 10,
             ),
             SizedBox(
-              height: size.height * 0.74,
+              height: size.height * 0.7,
               child: Consumer2<OrderController, UiController>(
                   builder: (context, notifier, uiNotifier, _) {
                 return ListView.builder(
@@ -64,7 +65,7 @@ class _DeliveryScreenState extends State<DeliveryScreen> {
                       return notifier.getOrderList[index]['OrderNo'] !=
                               'No Order'
                           ? GestureDetector(
-                              onTap: () {
+                              onTap: () async {
                                 uiNotifier.selectedDeliveryTab == 1
                                     ? CustomDialogs.showRatingDialog(
                                         context,

@@ -99,7 +99,11 @@ class WatmServices {
           context: context);
       int dataResp = jsonDecode(
           data['S:Envelope']['S:Body']['ns2:saveQRDataResponse']['return']);
-      if (dataResp == 1) {
+      if (double.tryParse(data['S:Envelope']['S:Body']['ns2:saveQRDataResponse']
+                      ['return']
+                  .toString())
+              .runtimeType ==
+          double) {
         Navigator.of(context).pushAndRemoveUntil(
             MaterialPageRoute(
                 builder: ((context) => MainWidget(

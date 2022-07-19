@@ -396,9 +396,7 @@ class ApiBody {
         '<txnId>$txnId</txnId>'
         '</web:updateOrderPayment>'
         '</soapenv:Body>';
-    print("::::::::::::::::::::::::::::::::::::::::::::::::::");
-    print(body);
-    print("::::::::::::::::::::::::::::::::::::::::::");
+
     return topHeader + body + closeEnvelope;
   }
 
@@ -408,12 +406,27 @@ class ApiBody {
         '<web:saveQRData>'
         '<userName>$userName</userName>'
         '<password>$password</password>'
-        ' <txnAmt>$amount</txnAmt>'
+        '<txnAmt>$amount</txnAmt>'
         '<watmDisp>$deviceId</watmDisp>'
         '</web:saveQRData>'
         '</soapenv:Body>';
+    return topHeader + body + closeEnvelope;
+  }
+
+  static String getWalletOrderBody(String userName, String password,
+      String amount, String orderId, String walletId) {
+    String body = '<soapenv:Body>'
+        '<web:saveQRData>'
+        '<userName>$userName</userName>'
+        '<password>$password</password>'
+        '<watmDisp>WOW0005D1</watmDisp>'
+        '<txnAmt>$amount</txnAmt>'
+        '<walletId>$walletId</walletId>'
+        '<orderId>$orderId</orderId>'
+        '<status>success</status>'
+        '</web:saveQRData>'
+        '</soapenv:Body>';
     print(body);
-    print("????????????????????????????");
     return topHeader + body + closeEnvelope;
   }
 
@@ -449,7 +462,6 @@ class ApiBody {
         '<merchantTxnId>$merchantTxnId</merchantTxnId>'
         '</web:saveWalletRecharge>'
         '</soapenv:Body>';
-      print(body);
     return topHeader + body + closeEnvelope;
   }
 
@@ -472,7 +484,6 @@ class ApiBody {
         '<merchantTxnId>$merchantTxnId</merchantTxnId>'
         '</web:updateWalletRecharge>'
         '</soapenv:Body>';
-    print(body);
     return topHeader + body + closeEnvelope;
   }
 
@@ -496,6 +507,7 @@ class ApiBody {
         '<merchantTxnId>$merchantTxnId</merchantTxnId>'
         '</web:saveCardRecharge>'
         '</soapenv:Body>';
+    print(body);
     return topHeader + body + closeEnvelope;
   }
 

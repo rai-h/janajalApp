@@ -99,7 +99,10 @@ class CustomDialogs {
       {EasyLoadingToastPosition toastPosition =
           EasyLoadingToastPosition.center}) {
     EasyLoading.showToast(title,
-        dismissOnTap: false, toastPosition: toastPosition);
+        dismissOnTap: false,
+        maskType: EasyLoadingMaskType.black,
+        toastPosition: toastPosition,
+        duration: Duration(milliseconds: 1500));
   }
 
   static showWalletAlertDialog(BuildContext context) {

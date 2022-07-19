@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:janajal/services/prepaid_card_service.dart';
 import 'package:janajal/ui/screens/log_screen/log_screen.dart';
@@ -27,9 +28,9 @@ class _PrepaidCardState extends State<PrepaidCard> {
         padding: const EdgeInsets.all(15.0),
         child: Column(children: [
           Container(
-            child: const Center(
+            child: Center(
               child: Text(
-                'JANAJAL WATER ATM CARD',
+                'prepaid_card_screen.janajal_prepaid_card'.tr(),
                 style: TextStyle(
                     color: Colors.white,
                     fontSize: 20,
@@ -48,7 +49,7 @@ class _PrepaidCardState extends State<PrepaidCard> {
           Row(
             children: [
               Text(
-                'Card No.: ',
+                'prepaid_card_screen.card_no'.tr() + " : ",
                 style: TextStyle(
                     fontSize: 18,
                     color: Colors.grey.shade800,
@@ -69,7 +70,7 @@ class _PrepaidCardState extends State<PrepaidCard> {
           Row(
             children: [
               Text(
-                'Balance: ',
+                'prepaid_card_screen.balance'.tr() + " : ",
                 style: TextStyle(
                     fontSize: 18,
                     color: Colors.grey.shade800,
@@ -105,8 +106,8 @@ class _PrepaidCardState extends State<PrepaidCard> {
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(40)),
                 color: Janajal.secondaryColor,
-                child: const Text(
-                  'TXN LOG',
+                child: Text(
+                  'prepaid_card_screen.txn_log'.tr(),
                   style: TextStyle(
                       fontSize: 16,
                       color: Colors.white,
@@ -128,8 +129,8 @@ class _PrepaidCardState extends State<PrepaidCard> {
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(40)),
                 color: Colors.green.shade800,
-                child: const Text(
-                  'TOPUP LOG',
+                child: Text(
+                  'prepaid_card_screen.top_log'.tr(),
                   style: TextStyle(
                     fontSize: 16,
                     color: Colors.white,
@@ -153,8 +154,8 @@ class _PrepaidCardState extends State<PrepaidCard> {
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
             color: Colors.orange.shade900,
-            child: const Text(
-              'RECHARGE',
+            child: Text(
+              'prepaid_card_screen.recharge'.tr(),
               style: TextStyle(
                 fontSize: 16,
                 color: Colors.white,

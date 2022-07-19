@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:janajal/controller/auth.controller.dart';
+import 'package:janajal/controller/ui.controller.dart';
 import 'package:janajal/models/user_model.dart';
 import 'package:janajal/services/api_calls.dart';
 import 'package:janajal/services/wallet_service.dart';
@@ -110,6 +111,7 @@ class AuthServices {
       Provider.of<AuthController>(context, listen: false)
           .changeUserNamePass(username, password);
 
+      Provider.of<UiController>(context, listen: false).changeNavbarIndex(0);
       SharedPref.updateUserInSharedPrefs(userModel, username, password);
       await WalletServices.getWalletDetails(context);
 

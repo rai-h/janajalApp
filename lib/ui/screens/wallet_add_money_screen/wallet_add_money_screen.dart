@@ -37,7 +37,7 @@ class _WalletAddMoneyScreenState extends State<WalletAddMoneyScreen> {
   bool showPromo = false;
   bool promoAplied = false;
   OffersModel? _appliedPromo;
-  String discountAmount = '';
+  String discountAmount = '0';
 
   String promoErrorText = '';
   @override
@@ -175,9 +175,9 @@ class _WalletAddMoneyScreenState extends State<WalletAddMoneyScreen> {
         discountAmount = (double.parse(_appliedPromo!.amount!) *
                 (double.parse(_appliedPromo!.discount!) / 100))
             .toString();
-        String amount = (double.parse(_appliedPromo!.amount!) +
-                (double.parse(discountAmount)))
-            .toString();
+        // String amount = (double.parse(_appliedPromo!.amount!) +
+        //         (double.parse(discountAmount)))
+        // .toString();
         _amountController.text = _appliedPromo!.amount!;
         promoAplied = true;
         setState(() {});
@@ -189,11 +189,12 @@ class _WalletAddMoneyScreenState extends State<WalletAddMoneyScreen> {
     _amountController.text = _appliedPromo!.amount!;
     promoAplied = false;
     _appliedPromo = null;
+    discountAmount = '0';
     setState(() {});
   }
 
-  void _handlePaymentSuccess(PaymentSuccessResponse response) {
-    WalletServices.updateWalletRechargeBody(
+  void _handlePaymentSuccess(PaymentSuccessResponse response) async {
+    await WalletServices.updateWalletRechargeBody(
         context,
         _amountController.text,
         discountAmount,
@@ -233,7 +234,7 @@ class _WalletAddMoneyScreenState extends State<WalletAddMoneyScreen> {
         backgroundColor: Colors.white,
         elevation: 1,
         centerTitle: true,
-        title:  Text(
+        title: Text(
           'wallet_screen.add_money'.tr(),
           style: TextStyle(
               fontSize: 24,
@@ -297,7 +298,7 @@ class _WalletAddMoneyScreenState extends State<WalletAddMoneyScreen> {
                           Row(
                             children: [
                               Text(
-                                'wallet_screen.wallet_no'.tr()+" : ",
+                                'wallet_screen.wallet_no'.tr() + " : ",
                                 style: TextStyle(
                                     fontSize: 16,
                                     color: Colors.grey.shade800,
@@ -318,7 +319,7 @@ class _WalletAddMoneyScreenState extends State<WalletAddMoneyScreen> {
                           Row(
                             children: [
                               Text(
-                                'wallet_screen.balance'.tr()+" : ",
+                                'wallet_screen.balance'.tr() + " : ",
                                 style: TextStyle(
                                     fontSize: 16,
                                     color: Colors.grey.shade800,
@@ -341,7 +342,7 @@ class _WalletAddMoneyScreenState extends State<WalletAddMoneyScreen> {
                             enabled: !promoAplied,
                             prefixIcon: Icon(Icons.currency_rupee_rounded),
                             controller: _amountController,
-                            text: 'Enter Amount',
+                            text: "my_order_screnn.enter_amount".tr(),
                           ),
                           const SizedBox(
                             height: 10,
@@ -486,28 +487,30 @@ class _WalletAddMoneyScreenState extends State<WalletAddMoneyScreen> {
                                             color: Colors.blueGrey.shade100
                                                 .withOpacity(0.4)),
                                         padding: EdgeInsets.all(5),
-                                        child: ListTile(
-                                          leading: Text(
-                                            '${_appliedPromo!.discount!} %',
-                                            style: TextStyle(
-                                                color: Colors.red,
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 20),
+                                        child: Container(
+                                          child: ListTile(
+                                            leading: Text(
+                                              '${_appliedPromo!.discount!} %',
+                                              style: TextStyle(
+                                                  color: Colors.red,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 20),
+                                            ),
+                                            title: Text(
+                                              '${_appliedPromo!.promoCode!}',
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 20),
+                                            ),
+                                            subtitle: Text(
+                                              "Get ${_appliedPromo!.discount} % extra on rechanrge of amount ${_appliedPromo!.amount}.",
+                                            ),
+                                            trailing: GestureDetector(
+                                                onTap: () {
+                                                  removePromo();
+                                                },
+                                                child: Icon(Icons.close)),
                                           ),
-                                          title: Text(
-                                            '${_appliedPromo!.promoCode!}',
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 20),
-                                          ),
-                                          subtitle: Text(
-                                            "Get ${_appliedPromo!.discount} % extra on rechanrge of amount ${_appliedPromo!.amount}.",
-                                          ),
-                                          trailing: GestureDetector(
-                                              onTap: () {
-                                                removePromo();
-                                              },
-                                              child: Icon(Icons.close)),
                                         ),
                                       )
                                     : Container(),
@@ -564,7 +567,7 @@ class _WalletAddMoneyScreenState extends State<WalletAddMoneyScreen> {
                           setState(() {});
                         }
                       },
-                      child:  Text(
+                      child: Text(
                         'wallet_screen.proceed_to_pay'.tr(),
                         style: TextStyle(color: Colors.white, fontSize: 18),
                       ),

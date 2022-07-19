@@ -52,7 +52,7 @@ class _OrderDetailsState extends State<OrderDetails> {
         backgroundColor: Colors.white,
         elevation: 1,
         centerTitle: true,
-        title:  Text(
+        title: Text(
           'navbar.my_orders'.tr(),
           style: TextStyle(
               fontSize: 24,
@@ -82,7 +82,14 @@ class _OrderDetailsState extends State<OrderDetails> {
                 style:
                     TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
               ))
-          : null,
+          : FloatingActionButton.extended(
+              onPressed: () {},
+              backgroundColor: Colors.teal,
+              label: Text(
+                'Cancel Order',
+                style:
+                    TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+              )),
       floatingActionButtonLocation:
           FloatingActionButtonLocation.miniCenterFloat,
       body: Padding(

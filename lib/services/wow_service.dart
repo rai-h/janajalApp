@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:janajal/controller/auth.controller.dart';
@@ -195,6 +196,8 @@ class WOWServiece {
           '1') {
         CustomDialogs.showToast('Something went wrong');
       } else {
+        CustomDialogs.showToast('Order $consignmentNo created successfully');
+        await Future.delayed(Duration(milliseconds: 1600));
         Navigator.of(context).pushAndRemoveUntil(
             MaterialPageRoute(
                 builder: ((context) => MainWidget(
@@ -207,6 +210,41 @@ class WOWServiece {
     } catch (e) {
       print('$e erron in service');
       return '';
+    }
+  }
+
+  static Future<bool?> saveOrderWithWallet(BuildContext context, String orderId,
+      String amount, String walletId) async {
+    OrderDetailsModel? orderDetailsModel;
+    try {
+      String? username =
+          Provider.of<AuthController>(context, listen: false).getUserName;
+      String? password =
+          Provider.of<AuthController>(context, listen: false).getPassword;
+
+      Map<String, dynamic> data = await ApiCalls.postCall(
+          methodName: Apis.getStationList,
+          body: ApiBody.getWalletOrderBody(
+            '118@$username',
+            password!,
+            amount,
+            orderId,
+            walletId,
+          ),
+          context: context);
+      print(data['S:Envelope']['S:Body']['ns2:saveQRDataResponse']['return']
+          .runtimeType);
+      if (double.tryParse(data['S:Envelope']['S:Body']['ns2:saveQRDataResponse']
+                      ['return']
+                  .toString())
+              .runtimeType ==
+          double) {
+        return true;
+      }
+      return false;
+    } catch (e) {
+      print('$e erron in service');
+      return false;
     }
   }
 
@@ -307,6 +345,32 @@ class WOWServiece {
       }
     } catch (e) {
       print(e);
+    }
+  }
+
+  static Future<Map<String, dynamic>> getWOWData(String wowId) async {
+    Map<String, dynamic> data = {};
+    String url =
+        'https://7u2ig7u4k8.execute-api.ap-south-1.amazonaws.com/prod/ohiya/water/wts?uid=${wowId}';
+    try {
+      http.Response response = await http.get(
+        Uri.parse(url),
+        headers: {
+          'auth-token': 'MNW9hrnpRX',
+          'Content-Type': 'application/json',
+        },
+      );
+      if (response.statusCode == 200) {
+        data = jsonDecode(response.body);
+        if (data['code'] == 200) {
+          return data['data'];
+        }
+      }
+
+      return {};
+    } catch (e) {
+      print(e);
+      return {};
     }
   }
 }

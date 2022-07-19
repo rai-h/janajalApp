@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:janajal/services/prepaid_card_service.dart';
 import 'package:janajal/ui/screens/prepaid_card_screen/widget.dart';
@@ -39,8 +40,8 @@ class _PrepaidCardScreenState extends State<PrepaidCardScreen> {
         backgroundColor: Colors.white,
         elevation: 1,
         centerTitle: true,
-        title: const Text(
-          'Prepaid Card',
+        title: Text(
+          'prepaid_card_screen.prepaid_card'.tr(),
           style: TextStyle(
               fontSize: 24,
               color: Colors.blueGrey,

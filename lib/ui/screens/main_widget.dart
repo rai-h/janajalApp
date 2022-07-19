@@ -26,10 +26,19 @@ class _MainWidgetState extends State<MainWidget> {
 
   @override
   void initState() {
-    widget.showToast ? CustomDialogs.showToast(widget.toastString) : null;
-    WalletServices.getOfferList(context);
+    callApi();
+    WidgetsBinding.instance?.addPostFrameCallback((_) {
+      // do something
+      print("Build Completed");
+    });
     // TODO: implement initState
     super.initState();
+  }
+
+  callApi() async {
+    widget.showToast ? CustomDialogs.showToast(widget.toastString) : null;
+    await Future.delayed(Duration(milliseconds: 1600));
+    WalletServices.getOfferList(context);
   }
 
   @override
@@ -61,7 +70,7 @@ class _MainWidgetState extends State<MainWidget> {
               }
             }),
         child: Scaffold(
-            extendBody: true,
+            extendBody: false,
             resizeToAvoidBottomInset: true,
             body: Container(
               decoration: const BoxDecoration(

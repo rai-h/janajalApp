@@ -41,7 +41,9 @@ class _LogScreenState extends State<LogScreen> {
         '';
     print(widget.isTopUp);
     print(widget.isWallet);
-    heading = widget.isTopUp ? 'wallet_screen.top_log'.tr() : 'wallet_screen.txn_log'.tr();
+    heading = widget.isTopUp
+        ? 'wallet_screen.top_log'.tr()
+        : 'wallet_screen.txn_log'.tr();
     dataList = widget.isWallet
         ? widget.isTopUp
             ? await WalletServices.getWalletTopUpList(context)
@@ -86,41 +88,111 @@ class _LogScreenState extends State<LogScreen> {
                     fontWeight: FontWeight.w600),
               ),
             )
-          : Padding(
-              padding: const EdgeInsets.all(10),
-              child: widget.isWallet
-                  ? Column(
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Text(
-                              'wallet_screen.wallet_no'.tr()+" : ",
-                              style: TextStyle(
-                                  fontSize: 18,
-                                  color: Colors.grey.shade800,
-                                  fontWeight: FontWeight.w800),
-                            ),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            Text(
-                              walletNo,
-                              style: TextStyle(
-                                  fontSize: 16,
-                                  color: Colors.grey.shade600,
-                                  fontWeight: FontWeight.w600),
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        SizedBox(
-                          height: size.height * 0.78,
-                          child: widget.isTopUp
+          : SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.all(10),
+                child: widget.isWallet
+                    ? Column(
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Text(
+                                'wallet_screen.wallet_no'.tr() + " : ",
+                                style: TextStyle(
+                                    fontSize: 18,
+                                    color: Colors.grey.shade800,
+                                    fontWeight: FontWeight.w800),
+                              ),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Text(
+                                walletNo,
+                                style: TextStyle(
+                                    fontSize: 16,
+                                    color: Colors.grey.shade600,
+                                    fontWeight: FontWeight.w600),
+                              ),
+                            ],
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          SizedBox(
+                            height: size.height * 0.78,
+                            child: widget.isTopUp
+                                ? ListView.builder(
+                                    physics: BouncingScrollPhysics(),
+                                    itemCount: dataList.length,
+                                    shrinkWrap: true,
+                                    itemBuilder: (context, index) {
+                                      return Padding(
+                                        padding:
+                                            EdgeInsets.symmetric(vertical: 10),
+                                        child: WalletTopUpCard(
+                                            dateTime: dataList[index]
+                                                ['createdOn'],
+                                            paidAmount: dataList[index]['paid'],
+                                            rechargeAmount: dataList[index]
+                                                ['value']),
+                                      );
+                                    })
+                                : ListView.builder(
+                                    physics: BouncingScrollPhysics(),
+                                    scrollDirection: Axis.vertical,
+                                    itemCount: dataList.length,
+                                    shrinkWrap: true,
+                                    itemBuilder: (context, index) {
+                                      return Padding(
+                                        padding:
+                                            EdgeInsets.symmetric(vertical: 10),
+                                        child: WalletTxnCard(
+                                          amount: dataList[index]['value'],
+                                          date: dataList[index]['createdOn'],
+                                          location: dataList[index]['watmCode'],
+                                          quantity: dataList[index]['sku'],
+                                          status: dataList[index]['txnType'],
+                                          refundTime: dataList[index]
+                                              ['refundTime'],
+                                          tnxId: dataList[index]['prn'] ?? '',
+                                        ),
+                                      );
+                                    }),
+                          )
+                        ],
+                      )
+                    : Column(
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Card No : ',
+                                style: TextStyle(
+                                    fontSize: 18,
+                                    color: Colors.grey.shade800,
+                                    fontWeight: FontWeight.w800),
+                              ),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Text(
+                                widget.cardNo,
+                                style: TextStyle(
+                                    fontSize: 16,
+                                    color: Colors.grey.shade600,
+                                    fontWeight: FontWeight.w600),
+                              ),
+                            ],
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          widget.isTopUp
                               ? ListView.builder(
                                   physics: BouncingScrollPhysics(),
+                                  scrollDirection: Axis.vertical,
                                   itemCount: dataList.length,
                                   shrinkWrap: true,
                                   itemBuilder: (context, index) {
@@ -144,65 +216,16 @@ class _LogScreenState extends State<LogScreen> {
                                     return Padding(
                                       padding:
                                           EdgeInsets.symmetric(vertical: 10),
-                                      child: WalletTxnCard(
-                                        amount: dataList[index]['value'],
-                                        date: dataList[index]['createdOn'],
-                                        location: dataList[index]['watmCode'],
-                                        quantity: dataList[index]['sku'],
-                                        status: dataList[index]['txnType'],
-                                        refundTime: dataList[index]
-                                            ['refundTime'],
-                                      ),
+                                      child: PrePaidCardTxnCard(
+                                          dateTime: dataList[index]
+                                              ['createdOn'],
+                                          sku: dataList[index]['sku'],
+                                          amount: dataList[index]['value']),
                                     );
-                                  }),
-                        )
-                      ],
-                    )
-                  : Column(
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Card No : ',
-                              style: TextStyle(
-                                  fontSize: 18,
-                                  color: Colors.grey.shade800,
-                                  fontWeight: FontWeight.w800),
-                            ),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            Text(
-                              widget.cardNo,
-                              style: TextStyle(
-                                  fontSize: 16,
-                                  color: Colors.grey.shade600,
-                                  fontWeight: FontWeight.w600),
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        widget.isTopUp
-                            ? ListView.builder(
-                                physics: BouncingScrollPhysics(),
-                                itemCount: dataList.length,
-                                shrinkWrap: true,
-                                itemBuilder: (context, index) {
-                                  return Padding(
-                                    padding: EdgeInsets.symmetric(vertical: 10),
-                                    child: WalletTopUpCard(
-                                        dateTime: dataList[index]['createdOn'],
-                                        paidAmount: dataList[index]['paid'],
-                                        rechargeAmount: dataList[index]
-                                            ['value']),
-                                  );
-                                })
-                            : Container()
-                      ],
-                    ),
+                                  })
+                        ],
+                      ),
+              ),
             ),
     );
   }
